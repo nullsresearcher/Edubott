@@ -1,0 +1,50 @@
+//
+//  UserInfViewModel.swift
+//  edubottt
+//
+//  Created by Mochy on 2024-05-12.
+//
+
+import Foundation
+class UserInfViewModel: ObservableObject {
+    @Published var userInf = UserInfModel()
+    var userInfKey = "UserInf"
+    
+    init() {
+        getUserInf()
+    }
+    
+    func getUserInf() {
+        guard let data = UserDefaults.standard.data(forKey: userInfKey),
+              let savedUserInf = try? JSONDecoder().decode(UserInfModel.self, from: data)
+        else {
+            // If data is not found in UserDefaults or decoding fails,
+            // set default values for userInf.personalInf and userInf.addressInf
+            userInf.personalInf = PersonalInf(firstName: "", lastName: "", email: "", password: "", dob: Date(), gender: .Female)
+            userInf.addressInf = AddressInf(address: "", city: "", state: "", country: "", postalCode: "")
+            return
+        }
+        
+        self.userInf = savedUserInf
+    }
+    
+    
+    func updateUserInf(firstName: String, lastName: String, email: String, password: String, dob: Date, gender: PersonalInf.Gender, address: String, city: String, state: String, country: String, postalCode: String) {
+        userInf.personalInf = PersonalInf(firstName: firstName, lastName: lastName, email: email, password: password, dob: dob, gender: gender)
+        userInf.addressInf = AddressInf(address: address, city: city, state: state, country: country, postalCode: postalCode)
+    }
+    
+    func getRegisteredEmail() -> String? {
+        getUserInf() // Assuming getUserInf() retrieves the user information from somewhere
+        
+        // Return the email if it exists
+        return userInf.personalInf.email
+    }
+
+    
+    func saveUserInf() {
+        if let encodedData = try? JSONEncoder().encode(userInf){
+            UserDefaults.standard.set(encodedData, forKey: userInfKey)
+        }
+    }
+}
