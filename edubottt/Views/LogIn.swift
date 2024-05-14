@@ -16,33 +16,62 @@ struct LogIn: View {
     @State private var alertMessage: String = ""
     
     var body: some View {
-           VStack {
-               TextField("Email", text: $userEmail)
-                   .padding()
-                   .frame(minWidth: .infinity)
-                   .frame(height: 50)
-                   .textFieldStyle(RoundedBorderTextFieldStyle())
-               SecureField("Password", text: $password)
-                   .padding()
-                   .frame(height: 50)
-                   .textFieldStyle(RoundedBorderTextFieldStyle())
-               
-               Button("Log In") {
-                   
-               }
-               .padding()
-               .frame(width: 350, height: 50)
-               .foregroundColor(.white)
-               .background(Color.blue)
-               .cornerRadius(8)
-               .alert(isPresented: $showAlert) {
-                   Alert(title: Text(alertMessage))
-               }
-           }
-           .padding()
-           .frame(width: 350)
-           .background(Color.blue)
-       }
+        VStack {
+            Text("Welcome back!").font(.largeTitle)
+            
+            NavigationView{
+                VStack {
+                    
+                    TextField("Email", text: $userEmail)
+                        .frame(height:50)
+                        .padding()
+                        .border(Color.gray)
+                        .cornerRadius(8)
+                        .foregroundColor(.black)
+                    SecureField("Password", text: $password)
+                        .frame(height: 50)
+                        .padding()
+                        .border(Color.gray)
+                        .cornerRadius(8)
+                    
+                    
+                    
+                    
+                }
+                .frame(height: 200)
+                .listStyle(PlainListStyle())
+                .background(Color.clear)
+                .padding()
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Log In") {
+                            
+                        }
+                        .alert(isPresented: $showAlert, content: getAlert)
+                        
+                    }
+                }
+            }
+        }
+    }
+    
+    func isValidLogIn() -> Bool {
+        guard !userEmail.isEmpty && !password.isEmpty else {
+            showAlert.toggle()
+            alertMessage = "Please enter your email and password"
+            return false
+        }
+        guard userEmail == userInfViewModel.userInf.personalInf.email && password == userInfViewModel.userInf.personalInf.password else {
+            showAlert.toggle()
+            alertMessage = "Invalid email or password! Please try again!"
+            return false
+        }
+        return true
+    }
+    func getAlert() -> Alert{
+        return Alert(title: Text(alertMessage))
+    }
+    
 }
 
 struct LogIn_Previews: PreviewProvider {

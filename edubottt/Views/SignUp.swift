@@ -45,7 +45,7 @@ struct SignUp: View {
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button("Next") {
-                        if isValid() {
+                        if isValidSignIn() {
                             userInfViewModel.updateUserInf(
                                 firstName: userInfViewModel.userInf.personalInf.firstName,
                                 lastName: userInfViewModel.userInf.personalInf.lastName,
@@ -63,7 +63,7 @@ struct SignUp: View {
                         }
                         
                     }
-                    .disabled(!isValid())
+                    .disabled(!isValidSignIn())
                     .alert(isPresented: $showAlert, content: getAlert)
                 }
             }
@@ -71,7 +71,7 @@ struct SignUp: View {
     }
     
     
-    func isValid() -> Bool {
+    func isValidSignIn() -> Bool {
         guard !userInfViewModel.userInf.personalInf.firstName.isEmpty else {
             showAlert.toggle()
             alertMessage = "First name is required!"
