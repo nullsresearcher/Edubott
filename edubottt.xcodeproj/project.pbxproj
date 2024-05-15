@@ -18,6 +18,9 @@
 		C7344B822BF32E42002A2E82 /* OptionalSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */; };
 		C7344B862BF32EA9002A2E82 /* UserRefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B852BF32EA9002A2E82 /* UserRefModel.swift */; };
 		C7344B882BF33110002A2E82 /* LogIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B872BF3310F002A2E82 /* LogIn.swift */; };
+		C782D8252BF4630000485E5C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C782D8242BF4630000485E5C /* MainView.swift */; };
+		C782D8272BF4636E00485E5C /* SubjectDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C782D8262BF4636E00485E5C /* SubjectDetailView.swift */; };
+		C782D8292BF466DB00485E5C /* UserRefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C782D8282BF466DB00485E5C /* UserRefViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalSignUp.swift; sourceTree = "<group>"; };
 		C7344B852BF32EA9002A2E82 /* UserRefModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRefModel.swift; sourceTree = "<group>"; };
 		C7344B872BF3310F002A2E82 /* LogIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogIn.swift; sourceTree = "<group>"; };
+		C782D8242BF4630000485E5C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		C782D8262BF4636E00485E5C /* SubjectDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailView.swift; sourceTree = "<group>"; };
+		C782D8282BF466DB00485E5C /* UserRefViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRefViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,9 +71,9 @@
 		C7344B652BF15DA2002A2E82 /* edubottt */ = {
 			isa = PBXGroup;
 			children = (
-				C7344B7E2BF1BEF0002A2E82 /* ViewModels */,
 				C7344B662BF15DA2002A2E82 /* edubotttApp.swift */,
 				C7344B7B2BF1BEB1002A2E82 /* Models */,
+				C7344B7E2BF1BEF0002A2E82 /* ViewModels */,
 				C7344B762BF1B8CE002A2E82 /* Views */,
 				C7344B6A2BF15DA2002A2E82 /* Item.swift */,
 				C7344B6C2BF15DA7002A2E82 /* Assets.xcassets */,
@@ -88,9 +94,9 @@
 			isa = PBXGroup;
 			children = (
 				C7344B772BF1B97E002A2E82 /* HomePage.swift */,
-				C7344B792BF1BDF0002A2E82 /* SignUp.swift */,
-				C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */,
-				C7344B872BF3310F002A2E82 /* LogIn.swift */,
+				C782D8232BF462BC00485E5C /* Main */,
+				C782D8212BF4629100485E5C /* SignUp */,
+				C782D8222BF462A700485E5C /* LogIn */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,8 +114,35 @@
 			isa = PBXGroup;
 			children = (
 				C7344B7F2BF1BF37002A2E82 /* UserInfViewModel.swift */,
+				C782D8282BF466DB00485E5C /* UserRefViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C782D8212BF4629100485E5C /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				C7344B792BF1BDF0002A2E82 /* SignUp.swift */,
+				C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		C782D8222BF462A700485E5C /* LogIn */ = {
+			isa = PBXGroup;
+			children = (
+				C7344B872BF3310F002A2E82 /* LogIn.swift */,
+			);
+			path = LogIn;
+			sourceTree = "<group>";
+		};
+		C782D8232BF462BC00485E5C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				C782D8242BF4630000485E5C /* MainView.swift */,
+				C782D8262BF4636E00485E5C /* SubjectDetailView.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,12 +216,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7344B6B2BF15DA2002A2E82 /* Item.swift in Sources */,
+				C782D8272BF4636E00485E5C /* SubjectDetailView.swift in Sources */,
 				C7344B822BF32E42002A2E82 /* OptionalSignUp.swift in Sources */,
 				C7344B862BF32EA9002A2E82 /* UserRefModel.swift in Sources */,
+				C782D8252BF4630000485E5C /* MainView.swift in Sources */,
 				C7344B7D2BF1BEC4002A2E82 /* UserInfModel.swift in Sources */,
 				C7344B7A2BF1BDF0002A2E82 /* SignUp.swift in Sources */,
 				C7344B802BF1BF37002A2E82 /* UserInfViewModel.swift in Sources */,
 				C7344B672BF15DA2002A2E82 /* edubotttApp.swift in Sources */,
+				C782D8292BF466DB00485E5C /* UserRefViewModel.swift in Sources */,
 				C7344B882BF33110002A2E82 /* LogIn.swift in Sources */,
 				C7344B782BF1B97E002A2E82 /* HomePage.swift in Sources */,
 			);

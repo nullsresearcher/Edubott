@@ -6,9 +6,15 @@
 //
 
 import Foundation
-struct UserRefModel: Codable {
-    var institutionName: String
-    enum Subjects: String, Codable, CaseIterable {
+
+
+struct UserRefModel: Identifiable, Codable {
+    var id = UUID()
+    
+    var subjectName: Subject
+    var questions: [Question]
+    
+    enum Subject: String, Codable, CaseIterable {
         case Math = "Math"
         case Science = "Science"
         case History = "History"
@@ -21,10 +27,18 @@ struct UserRefModel: Codable {
     }
     
     static func addSubject(_ subject: String) {
-        guard !Subjects.allCases.contains(where: { $0.rawValue == subject }) else {
+        guard !Subject.allCases.contains(where: { $0.rawValue == subject }) else {
             return
         }
-        _ = Subjects(rawValue: subject)
+        _ = Subject(rawValue: subject)
     }
 
+}
+struct Question: Codable {
+    var question: String
+    var options: [String]
+    var answers: [String]
+    var keyWords: [String]
+    var isCorrect: Bool
+    var dateCreated: Date
 }

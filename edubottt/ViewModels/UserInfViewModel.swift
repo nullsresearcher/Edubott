@@ -8,7 +8,7 @@
 import Foundation
 class UserInfViewModel: ObservableObject {
     @Published var userInf = UserInfModel()
-    var userInfKey = "UserInf"
+    private var userInfKey = "UserInf"
     
     init() {
         getUserInf()
@@ -18,8 +18,6 @@ class UserInfViewModel: ObservableObject {
         guard let data = UserDefaults.standard.data(forKey: userInfKey),
               let savedUserInf = try? JSONDecoder().decode(UserInfModel.self, from: data)
         else {
-            // If data is not found in UserDefaults or decoding fails,
-            // set default values for userInf.personalInf and userInf.addressInf
             userInf.personalInf = PersonalInf(firstName: "", lastName: "", email: "", password: "", dob: Date(), gender: .Female)
             userInf.addressInf = AddressInf(address: "", city: "", state: "", country: "", postalCode: "")
             return
