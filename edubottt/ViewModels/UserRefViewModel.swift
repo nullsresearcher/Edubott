@@ -8,26 +8,35 @@
 import Foundation
 
 class UserRefViewModel: ObservableObject {
-    @Published var userRef = UserRefModel()
+    @Published var userRefs = UserRefModel.test
+    
     private var userRefKey = "UserRef"
     
     init() {
-//        getUserInf()\
         
     }
     
-    func getUserInf() {
-        guard let data = UserDefaults.standard.data(forKey: userRefKey),
-              let savedUserInf = try? JSONDecoder().decode(UserRefModel.self, from: data)
-        else { return }
-        
-        self.userRef = savedUserInf
-    }
-    
-    func saveUserInf() {
-        if let encodedData = try? JSONEncoder().encode(userRef){
-            UserDefaults.standard.set(encodedData, forKey: userRefKey)
+    func filteredUserRef(catefory: String) -> [UserRefModel] {
+        var filteredUserRefs = [UserRefModel]()
+        for userRef in userRefs {
+            if userRef.subjectDescription.category.rawValue == catefory {
+                filteredUserRefs.append(userRef)
+            }
         }
+        return filteredUserRefs
+    }
+    
+    func filteredSubjectCategory() -> [String] {
+        var listSubjectCategory: [String] = []
+        
+        for userRef in userRefs {
+            let subjectName = userRef.subjectDescription.category.rawValue
+            
+            if !listSubjectCategory.contains(subjectName) {
+                listSubjectCategory.append(subjectName)
+            }
+        }
+        return listSubjectCategory
     }
     
 }

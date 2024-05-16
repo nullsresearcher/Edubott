@@ -13,6 +13,7 @@ struct SignUp: View {
     @State private var secondPassword: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State private var isValid: Bool = false
  
     
     var body: some View {
@@ -59,15 +60,21 @@ struct SignUp: View {
                                 country: userInfViewModel.userInf.addressInf.country,
                                 postalCode: userInfViewModel.userInf.addressInf.postalCode
                             )
-                            
+                            isValid = true
+                            print("Sign up successfully")
                         }
-                        
                     }
                     .disabled(!isValidSignIn())
                     .alert(isPresented: $showAlert, content: getAlert)
+                    .background(
+                        EmptyView()
+                            .navigationDestination(isPresented: $isValid) {
+                                MainView().environmentObject(UserInfViewModel())
+                            }
+                    )
                 }
             }
-        }
+        }.navigationTitle("Sign Up")
     }
     
     
@@ -77,6 +84,7 @@ struct SignUp: View {
             alertMessage = "First name is required!"
             return false
         }
+        
         guard !userInfViewModel.userInf.personalInf.lastName.isEmpty else {
             showAlert.toggle()
             alertMessage = "Last name is required!"
@@ -86,6 +94,13 @@ struct SignUp: View {
             showAlert.toggle()
             alertMessage = "Email is required!"
             return false
+        }
+        if let registeredEmail = userInfViewModel.getRegisteredEmail(), !registeredEmail.isEmpty {
+            if userInfViewModel.userInf.personalInf.email == registeredEmail {
+                showAlert.toggle()
+                alertMessage = "This email is already registered!"
+                return false
+            }
         }
         guard firstPassword == secondPassword && !firstPassword.isEmpty else {
             showAlert.toggle()
@@ -99,26 +114,26 @@ struct SignUp: View {
             return false
         }
 
-        guard !userInfViewModel.userInf.addressInf.address.isEmpty else {
-            showAlert.toggle()
-            alertMessage = "Address is required!"
-            return false
-        }
-        guard !userInfViewModel.userInf.addressInf.city.isEmpty else {
-            showAlert.toggle()
-            alertMessage = "City is required!"
-            return false
-        }
-        guard !userInfViewModel.userInf.addressInf.state.isEmpty else {
-            showAlert.toggle()
-            alertMessage = "State is required!"
-            return false
-        }
-        guard !userInfViewModel.userInf.addressInf.country.isEmpty else {
-            showAlert.toggle()
-            alertMessage = "Country is required!"
-            return false
-        }
+//        guard !userInfViewModel.userInf.addressInf.address.isEmpty else {
+//            showAlert.toggle()
+//            alertMessage = "Address is required!"
+//            return false
+//        }
+//        guard !userInfViewModel.userInf.addressInf.city.isEmpty else {
+//            showAlert.toggle()
+//            alertMessage = "City is required!"
+//            return false
+//        }
+//        guard !userInfViewModel.userInf.addressInf.state.isEmpty else {
+//            showAlert.toggle()
+//            alertMessage = "State is required!"
+//            return false
+//        }
+//        guard !userInfViewModel.userInf.addressInf.country.isEmpty else {
+//            showAlert.toggle()
+//            alertMessage = "Country is required!"
+//            return false
+//        }
         
         return true
     }

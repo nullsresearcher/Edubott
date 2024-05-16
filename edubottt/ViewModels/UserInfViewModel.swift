@@ -30,12 +30,11 @@ class UserInfViewModel: ObservableObject {
     func updateUserInf(firstName: String, lastName: String, email: String, password: String, dob: Date, gender: PersonalInf.Gender, address: String, city: String, state: String, country: String, postalCode: String) {
         userInf.personalInf = PersonalInf(firstName: firstName, lastName: lastName, email: email, password: password, dob: dob, gender: gender)
         userInf.addressInf = AddressInf(address: address, city: city, state: state, country: country, postalCode: postalCode)
+        saveUserInf()
     }
     
     func getRegisteredEmail() -> String? {
-        getUserInf() // Assuming getUserInf() retrieves the user information from somewhere
-        
-        // Return the email if it exists
+        getUserInf() 
         return userInf.personalInf.email
     }
 

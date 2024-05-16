@@ -9,37 +9,34 @@ import SwiftUI
 
 struct HomePage: View {
     @StateObject var userInfViewModel: UserInfViewModel = UserInfViewModel()
+    let heightBtn: CGFloat = 70
     var body: some View {
         NavigationView {
             VStack {
                 Text("EASELY")
                     .font(.system(size: 72))
                     .padding(.top, 150)
+                    .foregroundColor(.black)
                 
                 Spacer(minLength: 350)
                 
-                VStack {
+                VStack(spacing: 25) {
                     NavigationLink(destination: SignUp()) {
                         Text("SIGN UP")
-                            .padding()
-                            .foregroundColor(.white)
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .frame(height: 50)
+                    .frame(height: heightBtn)
                     .background(Color.blue)
                     .cornerRadius(8)
                     
                     
-                    NavigationLink(destination: Text("Detail View 2")) {
+                    NavigationLink(destination: LogIn()) {
                         Text("LOG IN")
-                            .padding()
-                            .foregroundColor(.white)
-
                     }
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .frame(height: 50)
+                    .frame(height: heightBtn)
                     .background(Color.blue)
                     .cornerRadius(8)
                     
@@ -48,6 +45,9 @@ struct HomePage: View {
             }
             .frame(width: 350)
             .navigationTitle("")
+            .font(.title)
+            .foregroundColor(.white)
+            .fontWeight(.bold)
         }
     }
 }

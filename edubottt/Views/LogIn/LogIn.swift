@@ -16,44 +16,49 @@ struct LogIn: View {
     @State private var alertMessage: String = ""
     
     var body: some View {
-        VStack {
-            Text("Welcome back!").font(.largeTitle)
-            
-            NavigationView{
+        NavigationView {
+            VStack {
+                Text("Welcome back!")
+                    .font(.largeTitle)
+                
                 VStack {
-                    
                     TextField("Email", text: $userEmail)
-                        .frame(height:50)
+                        .frame(height: 50)
                         .padding()
                         .border(Color.gray)
                         .cornerRadius(8)
                         .foregroundColor(.black)
+                    
                     SecureField("Password", text: $password)
                         .frame(height: 50)
                         .padding()
                         .border(Color.gray)
                         .cornerRadius(8)
-                    
-                    
-                    
-                    
                 }
                 .frame(height: 200)
                 .listStyle(PlainListStyle())
                 .background(Color.clear)
                 .padding()
-                .toolbar {
-                    ToolbarItem(placement: .bottomBar) {
-                        Button("Log In") {
-                            
-                        }
-                        .alert(isPresented: $showAlert, content: getAlert)
-                        
+                
+                Button("Log In") {
+                    if isValidLogIn() {
+                        print("Log in successfully")
+                        isValid = true
                     }
                 }
+                .padding()
+                .alert(isPresented: $showAlert, content: getAlert)
+                .background(
+                    EmptyView()
+                        .navigationDestination(isPresented: $isValid) {
+                            MainView().environmentObject(UserInfViewModel())
+                        }
+                )
             }
         }
     }
+
+
     
     func isValidLogIn() -> Bool {
         guard !userEmail.isEmpty && !password.isEmpty else {
