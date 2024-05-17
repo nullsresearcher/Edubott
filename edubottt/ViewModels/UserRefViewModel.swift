@@ -16,10 +16,10 @@ class UserRefViewModel: ObservableObject {
         
     }
     
-    func filteredUserRef(catefory: String) -> [UserRefModel] {
+    func filteredUserRef(category: String) -> [UserRefModel] {
         var filteredUserRefs = [UserRefModel]()
         for userRef in userRefs {
-            if userRef.subjectDescription.category.rawValue == catefory {
+            if userRef.subjectDescription.category.rawValue == category {
                 filteredUserRefs.append(userRef)
             }
         }
