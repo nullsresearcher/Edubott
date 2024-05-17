@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C72D661E2BF72FA500D251FD /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72D661D2BF72FA500D251FD /* QuizView.swift */; };
 		C7344B672BF15DA2002A2E82 /* edubotttApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B662BF15DA2002A2E82 /* edubotttApp.swift */; };
 		C7344B6B2BF15DA2002A2E82 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B6A2BF15DA2002A2E82 /* Item.swift */; };
 		C7344B6D2BF15DA7002A2E82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7344B6C2BF15DA7002A2E82 /* Assets.xcassets */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C72D661D2BF72FA500D251FD /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		C7344B632BF15DA2002A2E82 /* edubottt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = edubottt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C7344B662BF15DA2002A2E82 /* edubotttApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = edubotttApp.swift; sourceTree = "<group>"; };
 		C7344B6A2BF15DA2002A2E82 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C72D661C2BF72F9100D251FD /* Quiz */ = {
+			isa = PBXGroup;
+			children = (
+				C72D661D2BF72FA500D251FD /* QuizView.swift */,
+			);
+			path = Quiz;
+			sourceTree = "<group>";
+		};
 		C7344B5A2BF15DA2002A2E82 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +151,7 @@
 			children = (
 				C782D8242BF4630000485E5C /* MainView.swift */,
 				C782D8262BF4636E00485E5C /* SubjectDetailView.swift */,
+				C72D661C2BF72F9100D251FD /* Quiz */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -219,6 +230,7 @@
 				C782D8272BF4636E00485E5C /* SubjectDetailView.swift in Sources */,
 				C7344B822BF32E42002A2E82 /* OptionalSignUp.swift in Sources */,
 				C7344B862BF32EA9002A2E82 /* UserRefModel.swift in Sources */,
+				C72D661E2BF72FA500D251FD /* QuizView.swift in Sources */,
 				C782D8252BF4630000485E5C /* MainView.swift in Sources */,
 				C7344B7D2BF1BEC4002A2E82 /* UserInfModel.swift in Sources */,
 				C7344B7A2BF1BDF0002A2E82 /* SignUp.swift in Sources */,
