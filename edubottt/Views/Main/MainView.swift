@@ -15,9 +15,9 @@ struct MainView: View {
         
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: columns) {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach( userRefViewModel.filteredSubjectCategory(), id: \.self ) { subject in
-                        NavigationLink(destination: SubjectDetailView(  filteredUserRefs: userRefViewModel.filteredUserRef(catefory: subject ))) {
+                        NavigationLink(destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
                             SubjectView(subject: subject)
                         }
                     }
@@ -42,7 +42,7 @@ struct SubjectView: View {
             Text(subject)
                 .frame(width: 100, height: 25)
                 .font(.title)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
         }.padding(.horizontal)
     }
 }
