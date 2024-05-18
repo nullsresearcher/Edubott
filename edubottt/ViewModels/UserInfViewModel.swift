@@ -26,10 +26,8 @@ class UserInfViewModel: ObservableObject {
         self.userInf = savedUserInf
     }
     
-    
-    func updateUserInf(firstName: String, lastName: String, email: String, password: String, dob: Date, gender: PersonalInf.Gender, address: String, city: String, state: String, country: String, postalCode: String) {
-        userInf.personalInf = PersonalInf(firstName: firstName, lastName: lastName, email: email, password: password, dob: dob, gender: gender)
-        userInf.addressInf = AddressInf(address: address, city: city, state: state, country: country, postalCode: postalCode)
+    func updatePassword(newPassword: String) {
+        userInf.personalInf.password = newPassword
         saveUserInf()
     }
     
