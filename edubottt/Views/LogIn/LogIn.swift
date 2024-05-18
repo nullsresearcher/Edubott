@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LogIn: View {
     @EnvironmentObject var userInfViewModel: UserInfViewModel
+    @EnvironmentObject var userRefViewModel: UserRefViewModel
     @State private var userEmail: String = ""
     @State private var password: String = ""
     @State private var isValid: Bool = false
@@ -16,45 +17,56 @@ struct LogIn: View {
     @State private var alertMessage: String = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Text("Welcome back!")
                     .font(.largeTitle)
+                    .bold()
+                    .padding()
                 
-                VStack {
-                    TextField("Email", text: $userEmail)
-                        .frame(height: 50)
-                        .padding()
-                        .border(Color.gray)
-                        .cornerRadius(8)
-                        .foregroundColor(.black)
-                    
-                    SecureField("Password", text: $password)
-                        .frame(height: 50)
-                        .padding()
-                        .border(Color.gray)
-                        .cornerRadius(8)
-                }
-                .frame(height: 200)
-                .listStyle(PlainListStyle())
-                .background(Color.clear)
-                .padding()
+                TextField("Email", text: $userEmail)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
+                
+                SecureField("Password", text: $password)
+                    .padding()
+                    .frame(width: 300, height: 50)
+                    .background(Color.black.opacity(0.05))
+                    .cornerRadius(10)
                 
                 Button("Log In") {
+                    print("click")
                     if isValidLogIn() {
                         print("Log in successfully")
                         isValid = true
+                    } else {
+                        print("try again")
+                        print(userInfViewModel.userInf.personalInf.email)
+                        print(userInfViewModel.userInf.personalInf.password)
                     }
+                    
                 }
-                .padding()
-                .alert(isPresented: $showAlert, content: getAlert)
-                .background(
-                    EmptyView()
-                        .navigationDestination(isPresented: $isValid) {
-                            MainView().environmentObject(UserInfViewModel())
-                        }
-                )
+                .foregroundColor(.white)
+                .frame(width: 300, height: 50)
+                .background(Color.blue)
+                .cornerRadius(10)
+                .alert(isPresented: $showAlert, content: {getAlert()})
+                .navigationDestination(isPresented: $isValid) {
+                    MainView().environmentObject(UserRefViewModel())
+                }
+                
+                NavigationLink(
+                    destination: ForgetPassword().environmentObject(UserInfViewModel())) {
+                        Text("Forget password")
+                            .italic()
+                            .underline()
+                }
+
             }
+            
+            
         }
     }
 
@@ -66,14 +78,20 @@ struct LogIn: View {
             alertMessage = "Please enter your email and password"
             return false
         }
-        guard userEmail == userInfViewModel.userInf.personalInf.email && password == userInfViewModel.userInf.personalInf.password else {
-            showAlert.toggle()
-            alertMessage = "Invalid email or password! Please try again!"
-            return false
-        }
+                guard userEmail == userInfViewModel.userInf.personalInf.email && password == userInfViewModel.userInf.personalInf.password else {
+                    showAlert.toggle()
+                    alertMessage = "Invalid email or password! Please try again!"
+                    return false
+                }
+
+//        guard userEmail == "H" && password == "Hi" else {
+//            showAlert.toggle()
+//            alertMessage = "Invalid email or password! Please try again!"
+//            return false
+//        }
         return true
     }
-    func getAlert() -> Alert{
+    func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))
     }
     
@@ -82,6 +100,12 @@ struct LogIn: View {
 struct LogIn_Previews: PreviewProvider {
     static var previews: some View {
         let userInfViewModel = UserInfViewModel()
-        return LogIn().environmentObject(userInfViewModel)
+        let userRefViewModel = UserRefViewModel()
+        return LogIn()
+            .environmentObject(userInfViewModel)
+            .environmentObject(userRefViewModel)
     }
 }
+
+
+

@@ -9,22 +9,23 @@ import SwiftUI
 
 struct SignUp: View {
     @EnvironmentObject var userInfViewModel: UserInfViewModel
-    @State private var firstPassword: String = ""
-    @State private var secondPassword: String = ""
+
+    @State private var confirmPassword: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var isValid: Bool = false
- 
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
+            
+            
             Form {
                 Section(header: Text("Personal Information")) {
                     TextField("First Name", text: $userInfViewModel.userInf.personalInf.firstName)
                     TextField("Last Name", text: $userInfViewModel.userInf.personalInf.lastName)
                     TextField("Email", text: $userInfViewModel.userInf.personalInf.email)
-                    SecureField("Password", text: $firstPassword)
-                    SecureField("Confirm Password", text: $secondPassword)
+                    SecureField("Password", text: $userInfViewModel.userInf.personalInf.password)
+                    SecureField("Confirm Password", text: $confirmPassword)
                     DatePicker("Date of birth", selection: $userInfViewModel.userInf.personalInf.dob, displayedComponents: .date)
                         .datePickerStyle(CompactDatePickerStyle())
                     Picker("Gender", selection: $userInfViewModel.userInf.personalInf.gender) {
@@ -33,7 +34,7 @@ struct SignUp: View {
                         }
                     }
                 }
-                
+
                 Section(header: Text("Address Information")) {
                     TextField("Address", text: $userInfViewModel.userInf.addressInf.address)
                     TextField("City", text: $userInfViewModel.userInf.addressInf.city)
@@ -42,77 +43,76 @@ struct SignUp: View {
                     TextField("Postal Code", text: $userInfViewModel.userInf.addressInf.postalCode)
                 }
             }
-            .padding()
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    Button("Next") {
-                        if isValidSignIn() {
-                            userInfViewModel.updateUserInf(
-                                firstName: userInfViewModel.userInf.personalInf.firstName,
-                                lastName: userInfViewModel.userInf.personalInf.lastName,
-                                email: userInfViewModel.userInf.personalInf.email,
-                                password: firstPassword,
-                                dob: userInfViewModel.userInf.personalInf.dob,
-                                gender: userInfViewModel.userInf.personalInf.gender,
-                                address: userInfViewModel.userInf.addressInf.address,
-                                city: userInfViewModel.userInf.addressInf.city,
-                                state: userInfViewModel.userInf.addressInf.state,
-                                country: userInfViewModel.userInf.addressInf.country,
-                                postalCode: userInfViewModel.userInf.addressInf.postalCode
-                            )
+                    Button("Save") {
+                        print("clicked")
+                        if isValidSignIn(){
                             isValid = true
-                            print("Sign up successfully")
+                            userInfViewModel.saveUserInf()
                         }
                     }
-                    .disabled(!isValidSignIn())
-                    .alert(isPresented: $showAlert, content: getAlert)
-                    .background(
-                        EmptyView()
-                            .navigationDestination(isPresented: $isValid) {
-                                MainView().environmentObject(UserInfViewModel())
-                            }
-                    )
+                    .alert(isPresented: $showAlert, content: {getAlert()})
+                    .navigationDestination(isPresented: $isValid) {
+                        MainView().environmentObject(UserRefViewModel())
+                    }
                 }
             }
-        }.navigationTitle("Sign Up")
+
+        }
+        .navigationTitle("Sign Up")
+        .navigationBarTitleDisplayMode(.inline)
     }
     
-    
     func isValidSignIn() -> Bool {
-        guard !userInfViewModel.userInf.personalInf.firstName.isEmpty else {
-            showAlert.toggle()
+        if userInfViewModel.userInf.personalInf.firstName.isEmpty {
             alertMessage = "First name is required!"
+            showAlert = true
             return false
         }
         
-        guard !userInfViewModel.userInf.personalInf.lastName.isEmpty else {
-            showAlert.toggle()
+        if userInfViewModel.userInf.personalInf.lastName.isEmpty {
             alertMessage = "Last name is required!"
+            showAlert = true
             return false
         }
-        guard !userInfViewModel.userInf.personalInf.email.isEmpty else {
-            showAlert.toggle()
+        
+        if userInfViewModel.userInf.personalInf.email.isEmpty {
             alertMessage = "Email is required!"
+            showAlert = true
             return false
         }
-        if let registeredEmail = userInfViewModel.getRegisteredEmail(), !registeredEmail.isEmpty {
-            if userInfViewModel.userInf.personalInf.email == registeredEmail {
-                showAlert.toggle()
-                alertMessage = "This email is already registered!"
-                return false
-            }
-        }
-        guard firstPassword == secondPassword && !firstPassword.isEmpty else {
-            showAlert.toggle()
+        
+        
+        if userInfViewModel.userInf.personalInf.password != confirmPassword || confirmPassword.isEmpty {
             alertMessage = "Passwords must match and not be empty"
-            return false
-        } 
-        guard let minDOB = Calendar.current.date(byAdding: .year, value: -6, to: Date()),
-              userInfViewModel.userInf.personalInf.dob < minDOB else {
-            showAlert.toggle()
-            alertMessage = "Sorry! The minimum age requirement is 6 years."
+            showAlert = true
             return false
         }
+        
+        if let minDOB = Calendar.current.date(byAdding: .year, value: -6, to: Date()), userInfViewModel.userInf.personalInf.dob >= minDOB {
+            alertMessage = "Sorry! The minimum age requirement is 6 years."
+            showAlert = true
+            return false
+        }
+        
+        return true
+    }
+    
+    func getAlert() -> Alert {
+        Alert(title: Text(alertMessage))
+    }
+}
+
+struct SignUp_Previews: PreviewProvider {
+    static var previews: some View {
+        let userInfViewModel = UserInfViewModel()
+        return SignUp()
+            .environmentObject(userInfViewModel)
+    }
+}
+
+
 
 //        guard !userInfViewModel.userInf.addressInf.address.isEmpty else {
 //            showAlert.toggle()
@@ -134,20 +134,3 @@ struct SignUp: View {
 //            alertMessage = "Country is required!"
 //            return false
 //        }
-        
-        return true
-    }
-    
-    func getAlert() -> Alert {
-        return Alert(title: Text(alertMessage))
-    }
-}
-
-struct SignUp_Previews: PreviewProvider {
-    static var previews: some View {
-        let userInfViewModel = UserInfViewModel()
-        return SignUp().environmentObject(userInfViewModel)
-    }
-}
-
-
