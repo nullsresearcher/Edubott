@@ -9,36 +9,27 @@ import SwiftUI
 
 struct HomePage: View {
     @StateObject var userInfViewModel: UserInfViewModel = UserInfViewModel()
-    let heightBtn: CGFloat = 70
+    @StateObject var userRefViewModel: UserRefViewModel = UserRefViewModel()
+    
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 Text("EASELY")
                     .font(.system(size: 72))
                     .padding(.top, 150)
                     .foregroundColor(.black)
+                    .bold()
                 
-                Spacer(minLength: 350)
+                Spacer(minLength: 150)
                 
                 VStack(spacing: 25) {
                     NavigationLink(destination: SignUp()) {
-                        Text("SIGN UP")
+                        Btn(type: "SIGN UP")
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: heightBtn)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-                    
                     
                     NavigationLink(destination: LogIn()) {
-                        Text("LOG IN")
+                        Btn(type: "LOG IN")
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .frame(height: heightBtn)
-                    .background(Color.blue)
-                    .cornerRadius(8)
                     
                     Spacer(minLength: 10)
                 }
@@ -47,8 +38,22 @@ struct HomePage: View {
             .navigationTitle("")
             .font(.title)
             .foregroundColor(.white)
-            .fontWeight(.bold)
+           
         }
+    }
+}
+
+struct Btn: View {
+    let type: String
+    let heightBtn: CGFloat = 60
+    
+    var body: some View {
+        Text(type)
+        .padding()
+        .frame(maxWidth: .infinity)
+        .frame(height: heightBtn)
+        .background(Color.gray)
+        .cornerRadius(10)
     }
 }
 
@@ -56,6 +61,9 @@ struct HomePage: View {
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
         let userInfViewModel = UserInfViewModel()
-        return HomePage().environmentObject(userInfViewModel)
+        let userRefViewModel = UserRefViewModel()
+        return HomePage()
+            .environmentObject(userInfViewModel)
+            .environmentObject(userRefViewModel)
     }
 }
