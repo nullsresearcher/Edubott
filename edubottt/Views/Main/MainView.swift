@@ -17,7 +17,7 @@ struct MainView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach( userRefViewModel.filteredSubjectCategory(), id: \.self ) { subject in
-                        NavigationLink(destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
+                        NavigationLink( destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
                             SubjectView(subject: subject)
                         }
                     }
@@ -25,6 +25,7 @@ struct MainView: View {
                 .padding()
             }
             .navigationTitle("My Courses")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

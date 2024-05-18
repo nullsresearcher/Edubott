@@ -32,6 +32,7 @@ struct SubjectDetailView: View {
             }
             .padding()
             .navigationTitle(subjectName.uppercased())
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
