@@ -18,12 +18,8 @@ struct ForgetPassword: View {
     @State private var email: String = ""
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Change Password")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
+        VStack {
+            NavigationStack {
                 Group {
                     if isValidEmail {
                         ChangePassword(password: $password, confirmPassword: $confirmPassword, isMatch: $isMatch)
@@ -33,7 +29,9 @@ struct ForgetPassword: View {
                             .environmentObject(UserInfViewModel())
                     }
                 }
+                
             }
+            .navigationTitle("Change Password")
         }
     }
     func validateEmail(_ email: String) -> Bool {

@@ -17,56 +17,52 @@ struct LogIn: View {
     @State private var alertMessage: String = ""
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("Welcome back!")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
-                
-                TextField("Email", text: $userEmail)
-                    .padding()
+        VStack {
+            NavigationStack {
+                VStack {
+                    TextField("Email", text: $userEmail)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .frame(width: 300, height: 50)
+                        .background(Color.black.opacity(0.05))
+                        .cornerRadius(10)
+                    
+                    Button("Log In") {
+                        print("click")
+                        if isValidLogIn() {
+                            print("Log in successfully")
+                            isValid = true
+                        } else {
+                            print("try again")
+                            print(userInfViewModel.userInf.personalInf.email)
+                            print(userInfViewModel.userInf.personalInf.password)
+                        }
+                        
+                    }
+                    .foregroundColor(.white)
                     .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
+                    .background(Color.blue)
                     .cornerRadius(10)
-                
-                SecureField("Password", text: $password)
-                    .padding()
-                    .frame(width: 300, height: 50)
-                    .background(Color.black.opacity(0.05))
-                    .cornerRadius(10)
-                
-                Button("Log In") {
-                    print("click")
-                    if isValidLogIn() {
-                        print("Log in successfully")
-                        isValid = true
-                    } else {
-                        print("try again")
-                        print(userInfViewModel.userInf.personalInf.email)
-                        print(userInfViewModel.userInf.personalInf.password)
+                    .alert(isPresented: $showAlert, content: {getAlert()})
+                    .navigationDestination(isPresented: $isValid) {
+                        MainView().environmentObject(UserRefViewModel())
                     }
                     
+                    NavigationLink(
+                        destination: ForgetPassword()) {
+                            Text("Forget password")
+                                .italic()
+                                .underline()
+                    }
                 }
-                .foregroundColor(.white)
-                .frame(width: 300, height: 50)
-                .background(Color.blue)
-                .cornerRadius(10)
-                .alert(isPresented: $showAlert, content: {getAlert()})
-                .navigationDestination(isPresented: $isValid) {
-                    MainView().environmentObject(UserRefViewModel())
-                }
-                
-                NavigationLink(
-                    destination: ForgetPassword()) {
-                        Text("Forget password")
-                            .italic()
-                            .underline()
-                }
-
             }
-            
-            
+            .navigationTitle("Welcome back!")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 

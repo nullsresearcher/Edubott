@@ -20,7 +20,7 @@ struct SubjectDetailView: View {
     let columns = [GridItem(), GridItem()]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(filteredUserRefs) { subject in

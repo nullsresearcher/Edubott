@@ -13,20 +13,22 @@ struct MainView: View {
     var body: some View {
         let columns = [GridItem(), GridItem()]
         
-        NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach( userRefViewModel.filteredSubjectCategory(), id: \.self ) { subject in
-                        NavigationLink( destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
-                            SubjectView(subject: subject)
+        VStack {
+            NavigationStack {
+                ScrollView {
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        ForEach( userRefViewModel.filteredSubjectCategory(), id: \.self ) { subject in
+                            NavigationLink( destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
+                                SubjectView(subject: subject)
+                            }
                         }
                     }
+                    .padding()
                 }
-                .padding()
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle("My Courses")
+                
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("My Courses")
-            
         }
     }
 }

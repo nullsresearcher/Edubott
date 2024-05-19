@@ -16,52 +16,52 @@ struct SignUp: View {
     @State private var isValid: Bool = false
     
     var body: some View {
-        NavigationStack {
-            
-            
-            Form {
-                Section(header: Text("Personal Information")) {
-                    TextField("First Name", text: $userInfViewModel.userInf.personalInf.firstName)
-                    TextField("Last Name", text: $userInfViewModel.userInf.personalInf.lastName)
-                    TextField("Email", text: $userInfViewModel.userInf.personalInf.email)
-                    SecureField("Password", text: $userInfViewModel.userInf.personalInf.password)
-                    SecureField("Confirm Password", text: $confirmPassword)
-                    DatePicker("Date of birth", selection: $userInfViewModel.userInf.personalInf.dob, displayedComponents: .date)
-                        .datePickerStyle(CompactDatePickerStyle())
-                    Picker("Gender", selection: $userInfViewModel.userInf.personalInf.gender) {
-                        ForEach(PersonalInf.Gender.allCases, id: \.self) { gender in
-                            Text(gender.rawValue)
+        VStack {
+            NavigationStack {
+                Form {
+                    Section(header: Text("Personal Information")) {
+                        TextField("First Name", text: $userInfViewModel.userInf.personalInf.firstName)
+                        TextField("Last Name", text: $userInfViewModel.userInf.personalInf.lastName)
+                        TextField("Email", text: $userInfViewModel.userInf.personalInf.email)
+                        SecureField("Password", text: $userInfViewModel.userInf.personalInf.password)
+                        SecureField("Confirm Password", text: $confirmPassword)
+                        DatePicker("Date of birth", selection: $userInfViewModel.userInf.personalInf.dob, displayedComponents: .date)
+                            .datePickerStyle(CompactDatePickerStyle())
+                        Picker("Gender", selection: $userInfViewModel.userInf.personalInf.gender) {
+                            ForEach(PersonalInf.Gender.allCases, id: \.self) { gender in
+                                Text(gender.rawValue)
+                            }
+                        }
+                    }
+
+                    Section(header: Text("Address Information")) {
+                        TextField("Address", text: $userInfViewModel.userInf.addressInf.address)
+                        TextField("City", text: $userInfViewModel.userInf.addressInf.city)
+                        TextField("Province", text: $userInfViewModel.userInf.addressInf.state)
+                        TextField("Country", text: $userInfViewModel.userInf.addressInf.country)
+                        TextField("Postal Code", text: $userInfViewModel.userInf.addressInf.postalCode)
+                    }
+                }
+                .toolbar {
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Save") {
+                            print("clicked")
+                            if isValidSignIn(){
+                                isValid = true
+                                userInfViewModel.saveUserInf()
+                            }
+                        }
+                        .alert(isPresented: $showAlert, content: {getAlert()})
+                        .navigationDestination(isPresented: $isValid) {
+                            MainView().environmentObject(UserRefViewModel())
                         }
                     }
                 }
 
-                Section(header: Text("Address Information")) {
-                    TextField("Address", text: $userInfViewModel.userInf.addressInf.address)
-                    TextField("City", text: $userInfViewModel.userInf.addressInf.city)
-                    TextField("Province", text: $userInfViewModel.userInf.addressInf.state)
-                    TextField("Country", text: $userInfViewModel.userInf.addressInf.country)
-                    TextField("Postal Code", text: $userInfViewModel.userInf.addressInf.postalCode)
-                }
             }
-            .toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    Button("Save") {
-                        print("clicked")
-                        if isValidSignIn(){
-                            isValid = true
-                            userInfViewModel.saveUserInf()
-                        }
-                    }
-                    .alert(isPresented: $showAlert, content: {getAlert()})
-                    .navigationDestination(isPresented: $isValid) {
-                        MainView().environmentObject(UserRefViewModel())
-                    }
-                }
-            }
-
+            .navigationTitle("Sign Up")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Sign Up")
-        .navigationBarTitleDisplayMode(.inline)
     }
     
     func isValidSignIn() -> Bool {

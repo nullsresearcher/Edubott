@@ -12,37 +12,39 @@ struct HomePage: View {
     @StateObject var userRefViewModel: UserRefViewModel = UserRefViewModel()
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                Text("EASELY")
-                    .font(.system(size: 72))
-                    .padding(.top, 150)
-                    .foregroundColor(.black)
-                    .bold()
-                
-                Spacer(minLength: 150)
-                
-                VStack(spacing: 25) {
-                    NavigationLink(destination: SignUp()
-                                    .environmentObject(userInfViewModel)
-                                    .environmentObject(userRefViewModel)) {
-                        Btn(type: "SIGN UP")
-                    }
+        VStack {
+            NavigationStack {
+                VStack {
+                    Text("EASELY")
+                        .font(.system(size: 72))
+                        .padding(.top, 150)
+                        .foregroundColor(.black)
+                        .bold()
                     
-                    NavigationLink(destination: LogIn()
-                                    .environmentObject(userInfViewModel)
-                                    .environmentObject(userRefViewModel)) {
-                        Btn(type: "LOG IN")
-                    }
+                    Spacer(minLength: 150)
                     
-                    Spacer(minLength: 10)
+                    VStack(spacing: 25) {
+                        NavigationLink(destination: SignUp()
+                                        .environmentObject(userInfViewModel)
+                                        .environmentObject(userRefViewModel)) {
+                            Btn(type: "SIGN UP")
+                        }
+                        
+                        NavigationLink(destination: LogIn()
+                                        .environmentObject(userInfViewModel)
+                                        .environmentObject(userRefViewModel)) {
+                            Btn(type: "LOG IN")
+                        }
+                        
+                        Spacer(minLength: 10)
+                    }
                 }
+                .frame(width: 350)
+                .navigationBarTitleDisplayMode(.inline)
+                .font(.title)
+                .foregroundColor(.white)
+               
             }
-            .frame(width: 350)
-            .navigationTitle("")
-            .font(.title)
-            .foregroundColor(.white)
-           
         }
     }
 }
