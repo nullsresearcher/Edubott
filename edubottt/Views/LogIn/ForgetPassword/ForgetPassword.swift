@@ -27,8 +27,10 @@ struct ForgetPassword: View {
                 Group {
                     if isValidEmail {
                         ChangePassword(password: $password, confirmPassword: $confirmPassword, isMatch: $isMatch)
+                            .environmentObject(UserInfViewModel())
                     } else {
                         ConfirmEmail(email: $email, isValidEmail: $isValidEmail)
+                            .environmentObject(UserInfViewModel())
                     }
                 }
             }

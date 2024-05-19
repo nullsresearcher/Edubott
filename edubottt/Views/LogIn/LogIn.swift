@@ -58,7 +58,7 @@ struct LogIn: View {
                 }
                 
                 NavigationLink(
-                    destination: ForgetPassword().environmentObject(UserInfViewModel())) {
+                    destination: ForgetPassword()) {
                         Text("Forget password")
                             .italic()
                             .underline()

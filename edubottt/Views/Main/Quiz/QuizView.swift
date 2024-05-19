@@ -28,8 +28,9 @@ struct QuizView: View {
             }
             .padding()
         }
-        .navigationTitle("Quiz")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Question \(currentIndex + 1)")
+        
     }
 }
 

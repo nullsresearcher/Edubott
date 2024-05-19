@@ -24,8 +24,9 @@ struct MainView: View {
                 }
                 .padding()
             }
-            .navigationTitle("My Courses")
             .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("My Courses")
+            
         }
     }
 }

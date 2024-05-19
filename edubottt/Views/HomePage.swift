@@ -23,11 +23,15 @@ struct HomePage: View {
                 Spacer(minLength: 150)
                 
                 VStack(spacing: 25) {
-                    NavigationLink(destination: SignUp()) {
+                    NavigationLink(destination: SignUp()
+                                    .environmentObject(userInfViewModel)
+                                    .environmentObject(userRefViewModel)) {
                         Btn(type: "SIGN UP")
                     }
                     
-                    NavigationLink(destination: LogIn()) {
+                    NavigationLink(destination: LogIn()
+                                    .environmentObject(userInfViewModel)
+                                    .environmentObject(userRefViewModel)) {
                         Btn(type: "LOG IN")
                     }
                     
