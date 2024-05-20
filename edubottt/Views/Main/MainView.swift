@@ -9,26 +9,48 @@ import SwiftUI
 
 struct MainView: View {
     @EnvironmentObject private var userRefViewModel: UserRefViewModel
-    
+    @StateObject private var model = ScanDocumentViewModel()
     var body: some View {
         let columns = [GridItem(), GridItem()]
         
         VStack {
             NavigationStack {
                 ScrollView {
-                    LazyVGrid(columns: columns, spacing: 20) {
+                    LazyVGrid(columns: columns, spacing: 10) {
                         ForEach( userRefViewModel.filteredSubjectCategory(), id: \.self ) { subject in
                             NavigationLink( destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
                                 SubjectView(subject: subject)
                             }
                         }
                     }
-                    .padding()
+                    .padding(.top, 40)
                 }
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("My Courses")
-                
+                .toolbar {
+                    
+                    ToolbarItem(placement: .bottomBar) {
+                        NavigationLink( destination: ScanCameraView()) {
+                            CameraBtn(color: .white)
+                        }
+                    }
+                }
             }
+        }
+    }
+}
+
+struct CameraBtn: View {
+    let color: Color
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(color.opacity(0.8))
+                .frame(width: 65, height: 65)
+
+            Circle()
+                .stroke(color, lineWidth: 2)
+                .frame(width: 75, height: 75)
         }
     }
 }
