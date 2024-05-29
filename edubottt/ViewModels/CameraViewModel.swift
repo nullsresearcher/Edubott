@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-class CameraSevice {
+class CameraViewModel {
     
     var session: AVCaptureSession?
     var delegate: AVCapturePhotoCaptureDelegate?
@@ -70,4 +70,3 @@ class CameraSevice {
     }
     
 }
-

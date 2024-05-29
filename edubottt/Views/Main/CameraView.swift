@@ -12,7 +12,7 @@ import AVFoundation
 struct CameraView: UIViewControllerRepresentable {
     typealias UIViewControllerType = UIViewController
     
-    let cameraService: CameraSevice
+    let cameraService: CameraViewModel
     let didFinishProcessingPhoto: (Result<AVCapturePhoto, Error>) -> ()
     
     func makeUIViewController(context: Context) -> UIViewController {

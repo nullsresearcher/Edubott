@@ -28,11 +28,8 @@ struct MainView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("My Courses")
                 .toolbar {
-                    
                     ToolbarItem(placement: .bottomBar) {
-                        NavigationLink( destination: ScanCameraView()) {
-                            CameraBtn(color: .white)
-                        }
+                        ScanCameraView()
                     }
                 }
             }
@@ -40,20 +37,7 @@ struct MainView: View {
     }
 }
 
-struct CameraBtn: View {
-    let color: Color
-    var body: some View {
-        ZStack {
-            Circle()
-                .fill(color.opacity(0.8))
-                .frame(width: 65, height: 65)
 
-            Circle()
-                .stroke(color, lineWidth: 2)
-                .frame(width: 75, height: 75)
-        }
-    }
-}
 
 struct SubjectView: View {
     let subject: String

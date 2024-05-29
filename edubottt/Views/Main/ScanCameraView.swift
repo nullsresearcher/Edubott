@@ -27,12 +27,7 @@ struct ScanCameraView: View {
                 Button(action: {
                     isCustomCameraViewPresented.toggle()
                 }, label: {
-                    Image(systemName: "camera.fill")
-                        .font(.largeTitle)
-                        .padding()
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                        .clipShape(Circle())
+                    CameraBtn(color: .black)
                 })
                 .padding(.bottom)
                 .sheet(isPresented: $isCustomCameraViewPresented, content: {
@@ -43,6 +38,20 @@ struct ScanCameraView: View {
     }
 }
 
+struct CameraBtn: View {
+    let color: Color
+    var body: some View {
+        ZStack {
+            Circle()
+                .fill(color.opacity(0.8))
+                .frame(width: 65, height: 65)
+
+            Circle()
+                .stroke(color, lineWidth: 2)
+                .frame(width: 75, height: 75)
+        }
+    }
+}
 #Preview {
     ScanCameraView()
 }
