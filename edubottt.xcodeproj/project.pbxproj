@@ -30,6 +30,10 @@
 		C79A81832BFC014E00179C77 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A81822BFC014E00179C77 /* CameraView.swift */; };
 		C79A81852BFC018700179C77 /* CustomCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A81842BFC018700179C77 /* CustomCameraView.swift */; };
 		C79A81872C06ED1100179C77 /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A81862C06ED1100179C77 /* CameraViewModel.swift */; };
+		C79A818A2C06F17000179C77 /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A81892C06F17000179C77 /* ScanView.swift */; };
+		C79A818C2C06F1A800179C77 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A818B2C06F1A800179C77 /* ScannerView.swift */; };
+		C79A818E2C06F22900179C77 /* TextRecognizerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A818D2C06F22900179C77 /* TextRecognizerViewModel.swift */; };
+		C79A81902C06F25300179C77 /* ScanDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A818F2C06F25300179C77 /* ScanDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +62,10 @@
 		C79A81822BFC014E00179C77 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		C79A81842BFC018700179C77 /* CustomCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCameraView.swift; sourceTree = "<group>"; };
 		C79A81862C06ED1100179C77 /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
+		C79A81892C06F17000179C77 /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		C79A818B2C06F1A800179C77 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
+		C79A818D2C06F22900179C77 /* TextRecognizerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerViewModel.swift; sourceTree = "<group>"; };
+		C79A818F2C06F25300179C77 /* ScanDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +142,7 @@
 			children = (
 				C7344B7C2BF1BEC4002A2E82 /* UserInfModel.swift */,
 				C7344B852BF32EA9002A2E82 /* UserRefModel.swift */,
+				C79A818F2C06F25300179C77 /* ScanDataModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -143,6 +152,7 @@
 			children = (
 				C79A81862C06ED1100179C77 /* CameraViewModel.swift */,
 				C7344B7F2BF1BF37002A2E82 /* UserInfViewModel.swift */,
+				C79A818D2C06F22900179C77 /* TextRecognizerViewModel.swift */,
 				C782D8282BF466DB00485E5C /* UserRefViewModel.swift */,
 				C79A81782BFA9BD400179C77 /* ScanDocumentViewModel.swift */,
 			);
@@ -172,6 +182,7 @@
 			children = (
 				C782D8242BF4630000485E5C /* MainView.swift */,
 				C782D8262BF4636E00485E5C /* SubjectDetailView.swift */,
+				C79A81882C06F11900179C77 /* Scan */,
 				C79A817D2BFC00BF00179C77 /* Camera */,
 				C79A817B2BFC00A200179C77 /* ScanCameraView.swift */,
 				C79A81822BFC014E00179C77 /* CameraView.swift */,
@@ -196,6 +207,15 @@
 			children = (
 			);
 			path = Camera;
+			sourceTree = "<group>";
+		};
+		C79A81882C06F11900179C77 /* Scan */ = {
+			isa = PBXGroup;
+			children = (
+				C79A81892C06F17000179C77 /* ScanView.swift */,
+				C79A818B2C06F1A800179C77 /* ScannerView.swift */,
+			);
+			path = Scan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,10 +292,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C79A81792BFA9BD400179C77 /* ScanDocumentViewModel.swift in Sources */,
+				C79A81902C06F25300179C77 /* ScanDataModel.swift in Sources */,
 				C7344B6B2BF15DA2002A2E82 /* Item.swift in Sources */,
 				C782D8272BF4636E00485E5C /* SubjectDetailView.swift in Sources */,
 				C79A81732BF82BC400179C77 /* ConfirmEmail.swift in Sources */,
 				C7344B822BF32E42002A2E82 /* OptionalSignUp.swift in Sources */,
+				C79A818A2C06F17000179C77 /* ScanView.swift in Sources */,
 				C7344B862BF32EA9002A2E82 /* UserRefModel.swift in Sources */,
 				C79A81872C06ED1100179C77 /* CameraViewModel.swift in Sources */,
 				C72D661E2BF72FA500D251FD /* QuizView.swift in Sources */,
@@ -287,10 +309,12 @@
 				C79A817C2BFC00A200179C77 /* ScanCameraView.swift in Sources */,
 				C79A81832BFC014E00179C77 /* CameraView.swift in Sources */,
 				C7344B672BF15DA2002A2E82 /* edubotttApp.swift in Sources */,
+				C79A818E2C06F22900179C77 /* TextRecognizerViewModel.swift in Sources */,
 				C782D8292BF466DB00485E5C /* UserRefViewModel.swift in Sources */,
 				C79A81852BFC018700179C77 /* CustomCameraView.swift in Sources */,
 				C79A81702BF80D4700179C77 /* ForgetPassword.swift in Sources */,
 				C7344B882BF33110002A2E82 /* LogIn.swift in Sources */,
+				C79A818C2C06F1A800179C77 /* ScannerView.swift in Sources */,
 				C7344B782BF1B97E002A2E82 /* HomePage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
