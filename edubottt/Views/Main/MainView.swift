@@ -28,8 +28,11 @@ struct MainView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("My Courses")
                 .toolbar {
+                    
                     ToolbarItem(placement: .bottomBar) {
-                        ScanCameraView()
+                        NavigationLink( destination: ScanView()) {
+                            CameraBtn(color: .black)
+                        }
                     }
                 }
             }

@@ -29,11 +29,10 @@ struct ScanView: View {
                 }
             }
                 .navigationTitle("Scan OCR")
-                .navigationBarItems(trailing: Button(action: {
+                .navigationBarItems(trailing:  Button(action: {
                     self.showScannerSheet = true
                 }, label: {
-                    Image(systemName: "doc.text.viewfinder")
-                        .font(.title)
+                    CameraBtn(color: .black)
                 })
                 .sheet(isPresented: $showScannerSheet, content: {
                     self.makeScannerView()
