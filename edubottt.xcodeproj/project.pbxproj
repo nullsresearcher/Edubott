@@ -184,9 +184,6 @@
 				C782D8262BF4636E00485E5C /* SubjectDetailView.swift */,
 				C79A81882C06F11900179C77 /* Scan */,
 				C79A817D2BFC00BF00179C77 /* Camera */,
-				C79A817B2BFC00A200179C77 /* ScanCameraView.swift */,
-				C79A81822BFC014E00179C77 /* CameraView.swift */,
-				C79A81842BFC018700179C77 /* CustomCameraView.swift */,
 				C72D661C2BF72F9100D251FD /* Quiz */,
 			);
 			path = Main;
@@ -205,6 +202,9 @@
 		C79A817D2BFC00BF00179C77 /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				C79A81842BFC018700179C77 /* CustomCameraView.swift */,
+				C79A81822BFC014E00179C77 /* CameraView.swift */,
+				C79A817B2BFC00A200179C77 /* ScanCameraView.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
