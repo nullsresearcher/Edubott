@@ -5,6 +5,8 @@
 //  Created by Mochy on 2024-05-12.
 //
 
+/// Lam gi trong z
+
 import Foundation
 
 struct UserInfModel: Codable {
@@ -16,6 +18,8 @@ struct UserInfModel: Codable {
         self.addressInf = AddressInf(address: "", city: "", state: "", country: "", postalCode: "")
     }
 }
+
+/// them validate() ... cac thu
 
 struct PersonalInf: Codable {
     var firstName: String
