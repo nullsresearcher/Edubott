@@ -34,6 +34,8 @@
 		C79A818C2C06F1A800179C77 /* ScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A818B2C06F1A800179C77 /* ScannerView.swift */; };
 		C79A818E2C06F22900179C77 /* TextRecognizerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A818D2C06F22900179C77 /* TextRecognizerViewModel.swift */; };
 		C79A81902C06F25300179C77 /* ScanDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C79A818F2C06F25300179C77 /* ScanDataModel.swift */; };
+		C7CC003D2C1661B1008AB71C /* PersonalInf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC003C2C1661B0008AB71C /* PersonalInf.swift */; };
+		C7CC003F2C1661E7008AB71C /* AddressInf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC003E2C1661E7008AB71C /* AddressInf.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		C79A818B2C06F1A800179C77 /* ScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerView.swift; sourceTree = "<group>"; };
 		C79A818D2C06F22900179C77 /* TextRecognizerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextRecognizerViewModel.swift; sourceTree = "<group>"; };
 		C79A818F2C06F25300179C77 /* ScanDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanDataModel.swift; sourceTree = "<group>"; };
+		C7CC003C2C1661B0008AB71C /* PersonalInf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInf.swift; sourceTree = "<group>"; };
+		C7CC003E2C1661E7008AB71C /* AddressInf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInf.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +145,8 @@
 			isa = PBXGroup;
 			children = (
 				C7344B7C2BF1BEC4002A2E82 /* UserInfModel.swift */,
+				C7CC003E2C1661E7008AB71C /* AddressInf.swift */,
+				C7CC003C2C1661B0008AB71C /* PersonalInf.swift */,
 				C7344B852BF32EA9002A2E82 /* UserRefModel.swift */,
 				C79A818F2C06F25300179C77 /* ScanDataModel.swift */,
 			);
@@ -308,8 +314,10 @@
 				C7344B802BF1BF37002A2E82 /* UserInfViewModel.swift in Sources */,
 				C79A817C2BFC00A200179C77 /* ScanCameraView.swift in Sources */,
 				C79A81832BFC014E00179C77 /* CameraView.swift in Sources */,
+				C7CC003D2C1661B1008AB71C /* PersonalInf.swift in Sources */,
 				C7344B672BF15DA2002A2E82 /* edubotttApp.swift in Sources */,
 				C79A818E2C06F22900179C77 /* TextRecognizerViewModel.swift in Sources */,
+				C7CC003F2C1661E7008AB71C /* AddressInf.swift in Sources */,
 				C782D8292BF466DB00485E5C /* UserRefViewModel.swift in Sources */,
 				C79A81852BFC018700179C77 /* CustomCameraView.swift in Sources */,
 				C79A81702BF80D4700179C77 /* ForgetPassword.swift in Sources */,
@@ -454,6 +462,8 @@
 				DEVELOPMENT_TEAM = 7ZWDPRBWRD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Easely;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera required for scan documents";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs to access the microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -461,6 +471,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,6 +499,8 @@
 				DEVELOPMENT_TEAM = 7ZWDPRBWRD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Easely;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera required for scan documents";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs to access the microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -495,6 +508,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

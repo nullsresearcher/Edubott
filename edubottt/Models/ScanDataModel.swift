@@ -7,15 +7,11 @@
 
 import Foundation
 
-/// Nhu nay goi la document ne
-/// Model representing scan data.
 struct ScanData:Identifiable {
     var id = UUID()
     let content:String
-
-    /// Initializes a new scan data model.
-    /// - Parameters:
-    ///  ... constructor hong co, voi hong dung data thi dat ga chi z
+    
+    init(content:String) {
         self.content = content
     }
 }

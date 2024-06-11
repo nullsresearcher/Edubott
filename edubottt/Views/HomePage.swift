@@ -1,50 +1,42 @@
-//
-//  HomePage.swift
-//  edubottt
-//
-//  Created by Mochy on 2024-05-12.
-//
-
 import SwiftUI
 
 struct HomePage: View {
-    @StateObject var userInfViewModel: UserInfViewModel = UserInfViewModel()
-    @StateObject var userRefViewModel: UserRefViewModel = UserRefViewModel()
+    @StateObject var signUpViewModel = SignInViewModel()
+    @StateObject var logInViewModel = LogInViewModel()
     
     var body: some View {
-        VStack {
-            NavigationStack {
-                VStack {
-                    Text("EASELY")
-                        .font(.system(size: 72))
-                        .padding(.top, 150)
-                        .foregroundColor(.black)
-                        .bold()
-                    
-                    Spacer(minLength: 150)
-                    
-                    VStack(spacing: 25) {
-                        NavigationLink(destination: SignUp()
-                                        .environmentObject(userInfViewModel)
-                                        .environmentObject(userRefViewModel)) {
+        NavigationStack {
+            VStack {
+                Text("EASELY")
+                    .font(.system(size: 72))
+                    .padding(.top, 150)
+                    .foregroundColor(.black)
+                    .bold()
+                
+                Spacer(minLength: 150)
+                
+                VStack(spacing: 25) {
+                    NavigationLink(destination: SignUp()
+                        .environmentObject(signUpViewModel)
+                        .onAppear {
+                            signUpViewModel.generateNewUser()
+                        }) {
                             Btn(type: "SIGN UP")
                         }
-                        
-                        NavigationLink(destination: LogIn()
-                                        .environmentObject(userInfViewModel)
-                                        .environmentObject(userRefViewModel)) {
+                    
+                    NavigationLink(destination: LogIn()
+                        .environmentObject(logInViewModel)) {
                             Btn(type: "LOG IN")
                         }
-                        
-                        Spacer(minLength: 10)
-                    }
+                    
+                    Spacer(minLength: 10)
                 }
-                .frame(width: 350)
-                .navigationBarTitleDisplayMode(.inline)
-                .font(.title)
-                .foregroundColor(.white)
-               
             }
+            .frame(width: 350)
+            .navigationBarTitleDisplayMode(.inline)
+            .font(.title)
+            .foregroundColor(.white)
+            
         }
     }
 }
@@ -55,21 +47,17 @@ struct Btn: View {
     
     var body: some View {
         Text(type)
-        .padding()
-        .frame(maxWidth: .infinity)
-        .frame(height: heightBtn)
-        .background(Color.gray)
-        .cornerRadius(10)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .frame(height: heightBtn)
+            .background(Color.blue)
+            .foregroundColor(.white)
+            .cornerRadius(10)
     }
 }
 
-
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {
-        let userInfViewModel = UserInfViewModel()
-        let userRefViewModel = UserRefViewModel()
-        return HomePage()
-            .environmentObject(userInfViewModel)
-            .environmentObject(userRefViewModel)
+        HomePage()
     }
 }

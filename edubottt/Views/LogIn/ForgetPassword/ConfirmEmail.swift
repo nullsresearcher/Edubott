@@ -38,7 +38,7 @@ struct ConfirmEmail: View {
     }
     
     func validEmail() {
-        if email == userInfViewModel.userInf.personalInf.email && !email.isEmpty {
+        if email == userInfViewModel.currentUserInf.personalInf.email && !email.isEmpty {
             isValidEmail = true
         } else {
             alertMessage = "Email is invalid. Please try again!"

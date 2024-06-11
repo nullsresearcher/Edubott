@@ -8,26 +8,59 @@
 import SwiftUI
 
 struct SignUp: View {
-    @EnvironmentObject var userInfViewModel: UserInfViewModel
-
+    @EnvironmentObject var signUpViewModel: SignInViewModel
+    
     @State private var confirmPassword: String = ""
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     @State private var isValid: Bool = false
+    @State private var isFirstNameFocused: Bool = false
+    @State private var isDOBFocused: Bool = false
     
     var body: some View {
+        
+        let userPersonalInf = $signUpViewModel.newUserInf.personalInf
+        let userAddressInf = $signUpViewModel.newUserInf.addressInf
+       
         VStack {
+            Button(action: {
+          
+                print(signUpViewModel.newUserInf)
+                print(signUpViewModel.userInfList)
+                
+                }, label: {
+                    Text("Check")
+                })
             NavigationStack {
                 Form {
                     Section(header: Text("Personal Information")) {
-                        TextField("First Name", text: $userInfViewModel.userInf.personalInf.firstName)
-                        TextField("Last Name", text: $userInfViewModel.userInf.personalInf.lastName)
-                        TextField("Email", text: $userInfViewModel.userInf.personalInf.email)
-                        SecureField("Password", text: $userInfViewModel.userInf.personalInf.password)
+                        TextField("First Name", text: userPersonalInf.firstName)
+                            .onTapGesture {
+                                self.isFirstNameFocused = true
+                            }
+                        WarningBox(condition: !signUpViewModel.newUserInf.personalInf.firstName.isEmpty && !signUpViewModel.newUserInf.personalInf.validFirstName, message: "Name must not contain the special character or numberic!")
+                        
+                            
+                            
+                        TextField("Last Name", text: userPersonalInf.lastName)
+                        WarningBox(condition: !signUpViewModel.newUserInf.personalInf.lastName.isEmpty && !signUpViewModel.newUserInf.personalInf.validLastName, message: "Name must not contain the special character or numberic!")
+                        
+                        TextField("Email", text: userPersonalInf.email)
+                        WarningBox(condition: !signUpViewModel.newUserInf.personalInf.email.isEmpty && !signUpViewModel.newUserInf.personalInf.validEmail, message: "Email is invalid. Please try again")
+                        
+                        SecureField("Password", text: userPersonalInf.password)
+                        
                         SecureField("Confirm Password", text: $confirmPassword)
-                        DatePicker("Date of birth", selection: $userInfViewModel.userInf.personalInf.dob, displayedComponents: .date)
+                        WarningBox(condition: !confirmPassword.isEmpty && signUpViewModel.newUserInf.personalInf.password != confirmPassword, message: "The password is not matched!")
+                        
+                        DatePicker("Date of birth", selection: userPersonalInf.dob, displayedComponents: .date)
                             .datePickerStyle(CompactDatePickerStyle())
-                        Picker("Gender", selection: $userInfViewModel.userInf.personalInf.gender) {
+                            .onTapGesture {
+                                self.isDOBFocused = true
+                            }
+                        WarningBox(condition: isDOBFocused && !signUpViewModel.newUserInf.personalInf.isAgeGreaterThanSix, message: "The minimum age is greater than 6!")
+                        
+                        Picker("Gender", selection: userPersonalInf.gender) {
                             ForEach(PersonalInf.Gender.allCases, id: \.self) { gender in
                                 Text(gender.rawValue)
                             }
@@ -35,78 +68,68 @@ struct SignUp: View {
                     }
 
                     Section(header: Text("Address Information")) {
-                        TextField("Address", text: $userInfViewModel.userInf.addressInf.address)
-                        TextField("City", text: $userInfViewModel.userInf.addressInf.city)
-                        TextField("Province", text: $userInfViewModel.userInf.addressInf.state)
-                        TextField("Country", text: $userInfViewModel.userInf.addressInf.country)
-                        TextField("Postal Code", text: $userInfViewModel.userInf.addressInf.postalCode)
+                        TextField("Address", text: userAddressInf.address)
+                        TextField("City", text: userAddressInf.city)
+                        TextField("Province", text: userAddressInf.state)
+                        TextField("Country", text: userAddressInf.country)
+                        TextField("Postal Code", text: userAddressInf.postalCode)
                     }
                 }
                 .toolbar {
                     ToolbarItem(placement: .bottomBar) {
                         Button("Save") {
                             print("clicked")
-                            if isValidSignIn(){
+                            if signUpViewModel.newUserInf.isValid {
+                                alertMessage = "You have signed up successfully!"
+                                showAlert = true
                                 isValid = true
-                                userInfViewModel.saveUserInf()
+                                signUpViewModel.saveNewUserInf()
                             }
                         }
                         .alert(isPresented: $showAlert, content: {getAlert()})
                         .navigationDestination(isPresented: $isValid) {
                             MainView().environmentObject(UserRefViewModel())
                         }
+                        .disabled(!signUpViewModel.newUserInf.isValid)
                     }
                 }
-
             }
             .navigationTitle("Sign Up")
             .navigationBarTitleDisplayMode(.inline)
+            .onTapGesture(count: 2) {
+                self.collapseKeyboard()
+            }
         }
     }
     
-    func isValidSignIn() -> Bool {
-        if userInfViewModel.userInf.personalInf.firstName.isEmpty {
-            alertMessage = "First name is required!"
-            showAlert = true
-            return false
-        }
-        
-        if userInfViewModel.userInf.personalInf.lastName.isEmpty {
-            alertMessage = "Last name is required!"
-            showAlert = true
-            return false
-        }
-        
-        if userInfViewModel.userInf.personalInf.email.isEmpty {
-            alertMessage = "Email is required!"
-            showAlert = true
-            return false
-        }
-        
-        
-        if userInfViewModel.userInf.personalInf.password != confirmPassword || confirmPassword.isEmpty {
-            alertMessage = "Passwords must match and not be empty"
-            showAlert = true
-            return false
-        }
-        
-        if let minDOB = Calendar.current.date(byAdding: .year, value: -6, to: Date()), userInfViewModel.userInf.personalInf.dob >= minDOB {
-            alertMessage = "Sorry! The minimum age requirement is 6 years."
-            showAlert = true
-            return false
-        }
-        
-        return true
+    private func collapseKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
-    
-    func getAlert() -> Alert {
+    private func getAlert() -> Alert {
         Alert(title: Text(alertMessage))
     }
 }
 
+struct WarningBox: View {
+    let condition: Bool
+    let message: String
+
+    var body: some View {
+        if condition {
+            Text(message)
+                .font(.caption)
+                .italic()
+                .foregroundStyle(.red.opacity(0.7))
+                .multilineTextAlignment(.leading)
+                
+        }
+    }
+}
+
+
 struct SignUp_Previews: PreviewProvider {
     static var previews: some View {
-        let userInfViewModel = UserInfViewModel()
+        let userInfViewModel = SignInViewModel()
         return SignUp()
             .environmentObject(userInfViewModel)
     }
@@ -114,23 +137,3 @@ struct SignUp_Previews: PreviewProvider {
 
 
 
-//        guard !userInfViewModel.userInf.addressInf.address.isEmpty else {
-//            showAlert.toggle()
-//            alertMessage = "Address is required!"
-//            return false
-//        }
-//        guard !userInfViewModel.userInf.addressInf.city.isEmpty else {
-//            showAlert.toggle()
-//            alertMessage = "City is required!"
-//            return false
-//        }
-//        guard !userInfViewModel.userInf.addressInf.state.isEmpty else {
-//            showAlert.toggle()
-//            alertMessage = "State is required!"
-//            return false
-//        }
-//        guard !userInfViewModel.userInf.addressInf.country.isEmpty else {
-//            showAlert.toggle()
-//            alertMessage = "Country is required!"
-//            return false
-//        }

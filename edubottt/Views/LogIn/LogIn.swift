@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct LogIn: View {
-    @EnvironmentObject var userInfViewModel: UserInfViewModel
-    @EnvironmentObject var userRefViewModel: UserRefViewModel
+    @EnvironmentObject var userInfViewModel: LogInViewModel
+    
     @State private var userEmail: String = ""
     @State private var password: String = ""
     @State private var isValid: Bool = false
@@ -34,13 +34,13 @@ struct LogIn: View {
                     
                     Button("Log In") {
                         print("click")
-                        if isValidLogIn() {
+                        if isValidLogIn(){
                             print("Log in successfully")
                             isValid = true
                         } else {
                             print("try again")
-                            print(userInfViewModel.userInf.personalInf.email)
-                            print(userInfViewModel.userInf.personalInf.password)
+                            print(userInfViewModel.currentUserInf.personalInf.email)
+                            print(userInfViewModel.currentUserInf.personalInf.password)
                         }
                         
                     }
@@ -68,26 +68,17 @@ struct LogIn: View {
 
 
     
-    func isValidLogIn() -> Bool {
-        guard !userEmail.isEmpty && !password.isEmpty else {
-            showAlert.toggle()
-            alertMessage = "Please enter your email and password"
+    private func isValidLogIn() -> Bool {
+        
+        if userInfViewModel.isValidLogIn(email: userEmail, password: password) {
+            return true
+        } else {
+            showAlert = true
+            alertMessage = "Invalid email or wrong password! Please try again!"
             return false
         }
-                guard userEmail == userInfViewModel.userInf.personalInf.email && password == userInfViewModel.userInf.personalInf.password else {
-                    showAlert.toggle()
-                    alertMessage = "Invalid email or password! Please try again!"
-                    return false
-                }
-
-//        guard userEmail == "H" && password == "Hi" else {
-//            showAlert.toggle()
-//            alertMessage = "Invalid email or password! Please try again!"
-//            return false
-//        }
-        return true
     }
-    func getAlert() -> Alert {
+    private func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))
     }
     
