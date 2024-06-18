@@ -62,9 +62,15 @@ class SignInViewModel : UserInfViewModel {
         newUserInf = UserInfModel()
     }
     
+        
+    
+    
 }
 
 class LogInViewModel : UserInfViewModel {
+    
+    @Published var email = ""
+    @Published var password = ""
     
     func isValidLogIn(email: String, password: String) -> Bool {
         for index in 0..<userInfList.count {
@@ -76,5 +82,19 @@ class LogInViewModel : UserInfViewModel {
             }
         }
         return false
+    }
+    func logInWithFireBase() {
+        guard !email.isEmpty, !password.isEmpty else {
+            return
+        }
+        Task {
+            do {
+                let returnedData = try await AuthenticationViewModel.shared.newUser(email: email, password: password)
+                print(returnedData)
+            }
+            catch {
+                print("Error:  \(error)")
+            }
+        }
     }
 }

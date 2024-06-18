@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
+
 struct PersonalInf: Codable {
     var firstName: String
     var lastName: String
@@ -46,3 +48,4 @@ struct PersonalInf: Codable {
         return email.contains(emailRegex)
     }
 }
+

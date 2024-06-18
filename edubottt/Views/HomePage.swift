@@ -1,8 +1,12 @@
 import SwiftUI
+import GoogleSignIn
+import GoogleSignInSwift
 
 struct HomePage: View {
     @StateObject var signUpViewModel = SignInViewModel()
     @StateObject var logInViewModel = LogInViewModel()
+    @State private var showSignInView: Bool = false
+    @StateObject private var googleController = GoogleAuthenticationViewModel()
     
     var body: some View {
         NavigationStack {
@@ -13,7 +17,7 @@ struct HomePage: View {
                     .foregroundColor(.black)
                     .bold()
                 
-                Spacer(minLength: 150)
+                Spacer(minLength: 125)
                 
                 VStack(spacing: 25) {
                     NavigationLink(destination: SignUp()
@@ -24,10 +28,23 @@ struct HomePage: View {
                             Btn(type: "SIGN UP")
                         }
                     
-                    NavigationLink(destination: LogIn()
+                    NavigationLink(destination: SignIn()
                         .environmentObject(logInViewModel)) {
-                            Btn(type: "LOG IN")
+                            Btn(type: "SIGN IN")
                         }
+                    
+                    
+                    GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .light, style: .icon, state: .normal), action: {
+                        Task {
+                            do {
+                                try await googleController.signInGoogle()
+                                showSignInView = false
+                            }
+                            catch {
+                                print(error)
+                            }
+                        }
+                    })
                     
                     Spacer(minLength: 10)
                 }
@@ -55,6 +72,7 @@ struct Btn: View {
             .cornerRadius(10)
     }
 }
+
 
 struct HomePage_Previews: PreviewProvider {
     static var previews: some View {

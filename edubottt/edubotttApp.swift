@@ -7,9 +7,11 @@
 
 import SwiftUI
 import SwiftData
-
+import Firebase
+import FirebaseAuth
 @main
 struct edubotttApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -26,8 +28,16 @@ struct edubotttApp: App {
 
     var body: some Scene {
         WindowGroup {
-            HomePage()
+            Root()
         }
         .modelContainer(sharedModelContainer)
     }
+}
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+      print("Configured firebase")
+    return true
+  }
 }

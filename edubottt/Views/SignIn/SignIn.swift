@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct LogIn: View {
-    @EnvironmentObject var userInfViewModel: LogInViewModel
+struct SignIn: View {
+    @StateObject var controler: SignInWithEmailViewModel = SignInWithEmailViewModel()
     
     @State private var userEmail: String = ""
     @State private var password: String = ""
@@ -20,13 +20,13 @@ struct LogIn: View {
         VStack {
             NavigationStack {
                 VStack {
-                    TextField("Email", text: $userEmail)
+                    TextField("Email", text: $controler.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                     
-                    SecureField("Password", text: $password)
+                    SecureField("Password", text: $controler.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
@@ -34,15 +34,18 @@ struct LogIn: View {
                     
                     Button("Log In") {
                         print("click")
-                        if isValidLogIn(){
-                            print("Log in successfully")
-                            isValid = true
-                        } else {
-                            print("try again")
-                            print(userInfViewModel.currentUserInf.personalInf.email)
-                            print(userInfViewModel.currentUserInf.personalInf.password)
+                        Task {
+                            do {
+                                try await controler.signIn()
+                                isValid = true
+                                return
+                            }
+                            catch {
+                                alertMessage = "Email or password is not valid. Please try again!"
+                                showAlert = true
+                                print(error)
+                            }
                         }
-                        
                     }
                     .foregroundColor(.white)
                     .frame(width: 300, height: 50)
@@ -52,6 +55,7 @@ struct LogIn: View {
                     .navigationDestination(isPresented: $isValid) {
                         MainView().environmentObject(UserRefViewModel())
                     }
+                    
                     
                     NavigationLink(
                         destination: ForgetPassword()) {
@@ -67,17 +71,6 @@ struct LogIn: View {
     }
 
 
-    
-    private func isValidLogIn() -> Bool {
-        
-        if userInfViewModel.isValidLogIn(email: userEmail, password: password) {
-            return true
-        } else {
-            showAlert = true
-            alertMessage = "Invalid email or wrong password! Please try again!"
-            return false
-        }
-    }
     private func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))
     }
@@ -88,7 +81,7 @@ struct LogIn_Previews: PreviewProvider {
     static var previews: some View {
         let userInfViewModel = UserInfViewModel()
         let userRefViewModel = UserRefViewModel()
-        return LogIn()
+        return SignIn()
             .environmentObject(userInfViewModel)
             .environmentObject(userRefViewModel)
     }
