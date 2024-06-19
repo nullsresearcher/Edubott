@@ -37,6 +37,15 @@ class SignUpWithEmailViewModel: AuthenticationViewModel {
         try await self.newUser(email: email, password: password)
         
     }
+    
+    var validPassword: Bool {
+        if password.count < 7 {
+            return false
+        }
+        return true
+    }
+    
+   
 }
 
 class SignInWithEmailViewModel: AuthenticationViewModel {
@@ -46,6 +55,10 @@ class SignInWithEmailViewModel: AuthenticationViewModel {
     @discardableResult
     func signIn() async throws -> UserAccount {
         return try await self.signInUser(email: email, password: password)
+    }
+    
+    func resetPassword(email: String) async throws {
+        try await Auth.auth().sendPasswordReset(withEmail: email)
     }
 }
 
@@ -65,13 +78,11 @@ extension AuthenticationViewModel {
         return UserAccount(user: authDataResult.user)
     }
     
-    func resetPassword(email: String) async throws {
-        try await Auth.auth().sendPasswordReset(withEmail: email)
-    }
+    
     
     func updatePassword (password:
                          String) async throws {
-        guard let user = Auth.auth() .currentUser else {
+        guard let user = Auth.auth().currentUser else {
             throw URLError (.badServerResponse)
         }
         try await user.updatePassword(to: password)

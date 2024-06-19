@@ -8,34 +8,17 @@
 import SwiftUI
 
 struct MainView: View {
-    @EnvironmentObject private var userRefViewModel: UserRefViewModel
-    @StateObject private var model = ScanDocumentViewModel()
+    @Binding var showHomePage: Bool
     var body: some View {
-        let columns = [GridItem(), GridItem()]
-        
-        VStack {
-            NavigationStack {
-                ScrollView {
-                    LazyVGrid(columns: columns, spacing: 10) {
-                        ForEach( userRefViewModel.filteredSubjectCategory(), id: \.self ) { subject in
-                            NavigationLink( destination: SubjectDetailView( subjectName: subject, filteredUserRefs: userRefViewModel.filteredUserRef(category: subject ))) {
-                                SubjectView(subject: subject)
-                            }
-                        }
-                    }
-                    .padding(.top, 40)
+        TabView {
+            MyCoursesView()
+                .tabItem {
+                    Label("Courses", systemImage: "book.fill")
                 }
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("My Courses")
-                .toolbar {
-                    
-                    ToolbarItem(placement: .bottomBar) {
-                        NavigationLink( destination: ScanView()) {
-                            CameraBtn(color: .black)
-                        }
-                    }
+            SettingView(showHomepage: $showHomePage)
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
                 }
-            }
         }
     }
 }
@@ -61,8 +44,9 @@ struct SubjectView: View {
 }
 
 struct MainView_Previews: PreviewProvider {
-    @EnvironmentObject private var userRefViewModel: UserRefViewModel
+    @EnvironmentObject var userRefViewModel: UserRefViewModel
+    @State static private var showHomePage = false
     static var previews: some View {
-        MainView().environmentObject(UserRefViewModel())
+        MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())
     }
 }

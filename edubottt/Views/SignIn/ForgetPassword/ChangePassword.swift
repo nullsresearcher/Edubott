@@ -12,6 +12,7 @@ struct ChangePassword: View {
     @Binding var password: String
     @Binding var confirmPassword: String
     @Binding var isMatch: Bool
+    @Binding var showHomePage: Bool
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
@@ -39,7 +40,7 @@ struct ChangePassword: View {
             getAlert()
         })
         .navigationDestination(isPresented: $isMatch) {
-            MainView().environmentObject(UserRefViewModel())}
+            MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())}
     }
     func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SignIn: View {
     @StateObject var controler: SignInWithEmailViewModel = SignInWithEmailViewModel()
-    
+    @Binding var showHomePage: Bool
     @State private var userEmail: String = ""
     @State private var password: String = ""
     @State private var isValid: Bool = false
@@ -38,6 +38,7 @@ struct SignIn: View {
                             do {
                                 try await controler.signIn()
                                 isValid = true
+                                showHomePage = false
                                 return
                             }
                             catch {
@@ -53,12 +54,12 @@ struct SignIn: View {
                     .cornerRadius(10)
                     .alert(isPresented: $showAlert, content: {getAlert()})
                     .navigationDestination(isPresented: $isValid) {
-                        MainView().environmentObject(UserRefViewModel())
+                        MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())
                     }
                     
                     
                     NavigationLink(
-                        destination: ForgetPassword()) {
+                        destination: ForgetPassword(showHomePage: $showHomePage)) {
                             Text("Forget password")
                                 .italic()
                                 .underline()
@@ -78,10 +79,12 @@ struct SignIn: View {
 }
 
 struct LogIn_Previews: PreviewProvider {
+    @State static private var showHomePage = false
+    
     static var previews: some View {
         let userInfViewModel = UserInfViewModel()
         let userRefViewModel = UserRefViewModel()
-        return SignIn()
+        return SignIn(showHomePage: $showHomePage)
             .environmentObject(userInfViewModel)
             .environmentObject(userRefViewModel)
     }

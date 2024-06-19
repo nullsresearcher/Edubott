@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ForgetPassword: View {
-    @EnvironmentObject var userInfViewModel: UserInfViewModel
+    @StateObject var controler: SignInWithEmailViewModel = SignInWithEmailViewModel()
     @State private var isMatch: Bool = false
     @State private var password: String = ""
     @State private var confirmPassword: String = ""
@@ -17,32 +17,15 @@ struct ForgetPassword: View {
     @State private var isValidEmail: Bool = false
     @State private var email: String = ""
     
+    @Binding var showHomePage: Bool
+    
     var body: some View {
         VStack {
             NavigationStack {
-                Group {
-                    if isValidEmail {
-                        ChangePassword(password: $password, confirmPassword: $confirmPassword, isMatch: $isMatch)
-                            .environmentObject(UserInfViewModel())
-                    } else {
-                        ConfirmEmail(email: $email, isValidEmail: $isValidEmail)
-                            .environmentObject(UserInfViewModel())
-                    }
-                }
-                
+                ConfirmEmail()
             }
             .navigationTitle("Change Password")
         }
-    }
-    func validateEmail(_ email: String) -> Bool {
-        return false
-    }
-    
-    func isValid() -> Bool {
-        if !password.isEmpty && password == confirmPassword {
-            return true
-        }
-        return false
     }
     
     func getAlert() -> Alert {
@@ -52,11 +35,12 @@ struct ForgetPassword: View {
 
 
 struct ForgetPassword_Previews: PreviewProvider {
+    @State static private var showHomePage = false
     static var previews: some View {
-        let userInfViewModel = UserInfViewModel()
-        let userRefViewModel = UserRefViewModel()
-        return ForgetPassword()
-            .environmentObject(userInfViewModel)
-            .environmentObject(userRefViewModel)
+        let SignInWithEmailViewModel = SignInWithEmailViewModel()
+       
+        return ForgetPassword(showHomePage: $showHomePage)
+            .environmentObject(SignInWithEmailViewModel)
+      
     }
 }

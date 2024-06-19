@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct Root: View {
-    @State private var showHomePage: Bool = false
+    @State var showHomePage: Bool = false
     var body: some View {
         ZStack {
             NavigationStack{
@@ -21,7 +21,7 @@ struct Root: View {
         }
         .fullScreenCover(isPresented: $showHomePage, content: {
             NavigationStack {
-                HomePage()
+                HomePage(showHomePage: $showHomePage)
             }
         })
     }

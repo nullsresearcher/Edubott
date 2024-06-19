@@ -7,6 +7,7 @@ struct HomePage: View {
     @StateObject var logInViewModel = LogInViewModel()
     @State private var showSignInView: Bool = false
     @StateObject private var googleController = GoogleAuthenticationViewModel()
+    @Binding var showHomePage: Bool
     
     var body: some View {
         NavigationStack {
@@ -20,7 +21,7 @@ struct HomePage: View {
                 Spacer(minLength: 125)
                 
                 VStack(spacing: 25) {
-                    NavigationLink(destination: SignUp()
+                    NavigationLink(destination: SignUp(showHomePage: $showHomePage)
                         .environmentObject(signUpViewModel)
                         .onAppear {
                             signUpViewModel.generateNewUser()
@@ -28,7 +29,7 @@ struct HomePage: View {
                             Btn(type: "SIGN UP")
                         }
                     
-                    NavigationLink(destination: SignIn()
+                    NavigationLink(destination: SignIn(showHomePage: $showHomePage)
                         .environmentObject(logInViewModel)) {
                             Btn(type: "SIGN IN")
                         }
@@ -75,7 +76,8 @@ struct Btn: View {
 
 
 struct HomePage_Previews: PreviewProvider {
+    @State static private var showHomePage = false
     static var previews: some View {
-        HomePage()
+        HomePage(showHomePage: $showHomePage)
     }
 }

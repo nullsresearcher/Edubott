@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct ConfirmEmail: View {
-    @EnvironmentObject var userInfViewModel: UserInfViewModel
-    @Binding var email: String
-    @Binding var isValidEmail: Bool
+    @State var controler = SignInWithEmailViewModel ()
+    @State var email: String = ""
+  
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     var body: some View {
@@ -21,7 +21,16 @@ struct ConfirmEmail: View {
                 .background(Color.black.opacity(0.05))
                 .cornerRadius(10)
             Button("Change Password") {
-                validEmail()
+                Task {
+                    do {
+                        try await controler.resetPassword(email: email)
+                        print("send link to reset successfully")
+                    }
+                    catch {
+                        print(error)
+                    }
+                }
+                
             }
             .foregroundColor(.white)
             .frame(width: 300, height: 50)
@@ -35,15 +44,6 @@ struct ConfirmEmail: View {
     }
     func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))
-    }
-    
-    func validEmail() {
-        if email == userInfViewModel.currentUserInf.personalInf.email && !email.isEmpty {
-            isValidEmail = true
-        } else {
-            alertMessage = "Email is invalid. Please try again!"
-            showAlert.toggle()
-        }
     }
 }
 

@@ -40,6 +40,7 @@
 		C7B834672C1D4FD800BE2667 /* GoogleAuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834662C1D4FD800BE2667 /* GoogleAuthenticationViewModel.swift */; };
 		C7B8346A2C1E482400BE2667 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834692C1E482400BE2667 /* Utilities.swift */; };
 		C7B8346E2C1E5D1700BE2667 /* UserGoogleAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B8346D2C1E5D1700BE2667 /* UserGoogleAccount.swift */; };
+		C7B834702C228E8700BE2667 /* MyCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B8346F2C228E8700BE2667 /* MyCoursesView.swift */; };
 		C7CC003D2C1661B1008AB71C /* PersonalInf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC003C2C1661B0008AB71C /* PersonalInf.swift */; };
 		C7CC003F2C1661E7008AB71C /* AddressInf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC003E2C1661E7008AB71C /* AddressInf.swift */; };
 		C7CC004E2C1AA5C2008AB71C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C7CC004D2C1AA5C2008AB71C /* FirebaseAnalytics */; };
@@ -86,6 +87,7 @@
 		C7B834662C1D4FD800BE2667 /* GoogleAuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAuthenticationViewModel.swift; sourceTree = "<group>"; };
 		C7B834692C1E482400BE2667 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C7B8346D2C1E5D1700BE2667 /* UserGoogleAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGoogleAccount.swift; sourceTree = "<group>"; };
+		C7B8346F2C228E8700BE2667 /* MyCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesView.swift; sourceTree = "<group>"; };
 		C7CC003C2C1661B0008AB71C /* PersonalInf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInf.swift; sourceTree = "<group>"; };
 		C7CC003E2C1661E7008AB71C /* AddressInf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInf.swift; sourceTree = "<group>"; };
 		C7CC00542C1AB904008AB71C /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 			children = (
 				C782D8242BF4630000485E5C /* MainView.swift */,
 				C7CC00592C1ACFC2008AB71C /* SettingView.swift */,
+				C7B8346F2C228E8700BE2667 /* MyCoursesView.swift */,
 				C782D8262BF4636E00485E5C /* SubjectDetailView.swift */,
 				C79A81882C06F11900179C77 /* Scan */,
 				C79A817D2BFC00BF00179C77 /* Camera */,
@@ -386,6 +389,7 @@
 				C7344B7D2BF1BEC4002A2E82 /* UserInfModel.swift in Sources */,
 				C79A81752BF82EAA00179C77 /* ChangePassword.swift in Sources */,
 				C7344B7A2BF1BDF0002A2E82 /* SignUp.swift in Sources */,
+				C7B834702C228E8700BE2667 /* MyCoursesView.swift in Sources */,
 				C7344B802BF1BF37002A2E82 /* UserInfViewModel.swift in Sources */,
 				C79A817C2BFC00A200179C77 /* ScanCameraView.swift in Sources */,
 				C7CC00552C1AB904008AB71C /* AuthenticationViewModel.swift in Sources */,

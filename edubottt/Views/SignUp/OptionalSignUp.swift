@@ -17,6 +17,8 @@ struct OptionalSignUp: View {
     @State private var isFirstNameFocused: Bool = false
     @State private var isDOBFocused: Bool = false
     
+    @Binding var showHomepage: Bool
+    
     var body: some View {
         
         let userPersonalInf = $signUpViewModel.newUserInf.personalInf
@@ -88,7 +90,7 @@ struct OptionalSignUp: View {
                         }
                         .alert(isPresented: $showAlert, content: {getAlert()})
                         .navigationDestination(isPresented: $isValid) {
-                            MainView().environmentObject(UserRefViewModel())
+                            MainView(showHomePage: $showHomepage).environmentObject(UserRefViewModel())
                         }
                         .disabled(!signUpViewModel.newUserInf.isValid)
                     }
@@ -128,9 +130,11 @@ struct WarningBox: View {
 
 
 struct OptionalSignUp_Previews: PreviewProvider {
+    @State static private var showHomePage = false
+    
     static var previews: some View {
         let userInfViewModel = SignInViewModel()
-        return SignUp()
+        return SignUp(showHomePage: $showHomePage)
             .environmentObject(userInfViewModel)
     }
 }

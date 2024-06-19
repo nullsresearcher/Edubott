@@ -16,6 +16,8 @@ struct SignUp: View {
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
+    @Binding var showHomePage: Bool
+    
     var body: some View {
         VStack {
             NavigationStack {
@@ -31,18 +33,19 @@ struct SignUp: View {
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                    
+                    WarningBox(condition: !controler.validPassword, message: "Password must be at least 8 character!")
                     SecureField("Confirm Password", text: $confirmedPassword)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                    
+                    WarningBox(condition: controler.password != confirmedPassword, message: "Please reenter password!")
                     Button("Sign Up") {
                         Task {
                             do {
                                 try await controler.signUp()
                                 isValid = true
+                                showHomePage = false
                                 return
                             }
                             catch {
@@ -58,7 +61,7 @@ struct SignUp: View {
                     .cornerRadius(10)
                     .alert(isPresented: $showAlert, content: {getAlert()})
                     .navigationDestination(isPresented: $isValid) {
-                        MainView().environmentObject(UserRefViewModel())
+                        MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())
                     }
                     
                     
@@ -79,9 +82,10 @@ struct SignUp: View {
 
 
 struct SignUp_Previews: PreviewProvider {
+    @State static private var showHomePage = false
     static var previews: some View {
         let userInfViewModel = SignInViewModel()
-        return SignUp()
+        return SignUp(showHomePage: $showHomePage)
             .environmentObject(userInfViewModel)
     }
 }
