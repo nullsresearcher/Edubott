@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MyCoursesView: View {
-    @EnvironmentObject private var userRefViewModel: UserRefViewModel
+    @StateObject private var userRefViewModel = UserRefViewModel()
     @StateObject private var model = ScanDocumentViewModel()
     var body: some View {
         let columns = [GridItem(), GridItem()]

@@ -32,8 +32,7 @@ struct SignIn: View {
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                     
-                    Button("Log In") {
-                        print("click")
+                    Button("Sign In") {
                         Task {
                             do {
                                 try await controler.signIn()
@@ -54,9 +53,8 @@ struct SignIn: View {
                     .cornerRadius(10)
                     .alert(isPresented: $showAlert, content: {getAlert()})
                     .navigationDestination(isPresented: $isValid) {
-                        MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())
+                        MainView(showHomePage: $showHomePage)
                     }
-                    
                     
                     NavigationLink(
                         destination: ForgetPassword(showHomePage: $showHomePage)) {

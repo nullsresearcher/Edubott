@@ -45,7 +45,7 @@ struct SignUp: View {
                             do {
                                 try await controler.signUp()
                                 isValid = true
-                                showHomePage = false
+                                
                                 return
                             }
                             catch {
@@ -61,7 +61,7 @@ struct SignUp: View {
                     .cornerRadius(10)
                     .alert(isPresented: $showAlert, content: {getAlert()})
                     .navigationDestination(isPresented: $isValid) {
-                        MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())
+                        SignIn(showHomePage: $showHomePage).environmentObject(UserRefViewModel())
                     }
                     
                     

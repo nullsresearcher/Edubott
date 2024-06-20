@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct Root: View {
-    @State var showHomePage: Bool = false
+    @State var showHomePage: Bool = true
     var body: some View {
         ZStack {
             NavigationStack{
-                SettingView(showHomepage: $showHomePage)
+                MainView(showHomePage: $showHomePage)
             }
         }
         .onAppear {

@@ -11,8 +11,10 @@ struct ConfirmEmail: View {
     @State var controler = SignInWithEmailViewModel ()
     @State var email: String = ""
   
+    @State private var showHomePage: Bool = true
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State private var showSignIn: Bool = false
     var body: some View {
         VStack {
             TextField("Email", text: $email)
@@ -24,7 +26,10 @@ struct ConfirmEmail: View {
                 Task {
                     do {
                         try await controler.resetPassword(email: email)
-                        print("send link to reset successfully")
+                        alertMessage = "Send the reset password request successfully!"
+                        showAlert = true
+                        showSignIn = true
+                        
                     }
                     catch {
                         print(error)
@@ -39,6 +44,9 @@ struct ConfirmEmail: View {
             .alert(isPresented: $showAlert, content: {
                 getAlert()
             })
+            .navigationDestination(isPresented: $showSignIn) {
+                SignIn(showHomePage: $showHomePage)
+            }
             
         }
     }

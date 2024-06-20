@@ -39,7 +39,7 @@ class SignUpWithEmailViewModel: AuthenticationViewModel {
     }
     
     var validPassword: Bool {
-        if password.count < 7 {
+        if !password.isEmpty && password.count < 7 {
             return false
         }
         return true
