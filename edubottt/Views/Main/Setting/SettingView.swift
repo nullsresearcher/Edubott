@@ -22,10 +22,13 @@ struct SettingView: View {
                 Button("Update address") {
                     // Your action here
                 }
-                
-                Button("Change password") {
-                    // Your action here
+                NavigationLink(destination: ChangePassword(showHomePage: $showHomepage)) {
+                    Button("Change password") {
+                            
+                    }
                 }
+                
+                
                 Button("Delete account") {
                     // Your action here
                 }

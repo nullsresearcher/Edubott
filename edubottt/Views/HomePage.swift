@@ -59,20 +59,7 @@ struct HomePage: View {
     }
 }
 
-struct Btn: View {
-    let type: String
-    let heightBtn: CGFloat = 60
-    
-    var body: some View {
-        Text(type)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .frame(height: heightBtn)
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-    }
-}
+
 
 
 struct HomePage_Previews: PreviewProvider {

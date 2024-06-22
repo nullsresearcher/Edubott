@@ -39,10 +39,7 @@ class SignUpWithEmailViewModel: AuthenticationViewModel {
     }
     
     var validPassword: Bool {
-        if !password.isEmpty && password.count < 7 {
-            return false
-        }
-        return true
+        return self.validPassword(password: password)
     }
     
    
@@ -79,13 +76,19 @@ extension AuthenticationViewModel {
     }
     
     
-    
     func updatePassword (password:
                          String) async throws {
         guard let user = Auth.auth().currentUser else {
             throw URLError (.badServerResponse)
         }
         try await user.updatePassword(to: password)
+    }
+    
+    func validPassword(password: String) -> Bool {
+        if !password.isEmpty && password.count < 7 {
+            return false
+        }
+        return true
     }
 }
 
