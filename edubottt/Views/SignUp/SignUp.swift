@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct SignUp: View {
-    @StateObject var controler: SignUpWithEmailViewModel = SignUpWithEmailViewModel()
+    @StateObject var SignUpControler: SignUpWithEmailViewModel = SignUpWithEmailViewModel()
+    @StateObject var KeyChainControler : KeyChainViewModel = KeyChainViewModel()
     
     @State private var confirmedPassword: String = ""
     @State private var isValid: Bool = false
@@ -22,29 +23,40 @@ struct SignUp: View {
         VStack {
             NavigationStack {
                 VStack {
-                    TextField("Email", text: $controler.email)
+                    TextField("Email", text: $SignUpControler.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                     
-                    SecureField("Password", text: $controler.password)
+                    SecureField("Password", text: $SignUpControler.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                    WarningBox(condition: !controler.validPassword, message: "Password must be at least 8 character!")
+                    
+                    WarningBox(condition: !SignUpControler.validPassword, message: "Password must be at least 8 character!")
+                    
                     SecureField("Confirm Password", text: $confirmedPassword)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
-                    WarningBox(condition: controler.password != confirmedPassword, message: "Please reenter password!")
+                    
+                    WarningBox(condition: SignUpControler.password != confirmedPassword, message: "Please reenter password!")
+                    
                     Button("Sign Up") {
+                        guard SignUpControler.validPassword(password: confirmedPassword), confirmedPassword == SignUpControler.password else {
+                            print("invalid input")
+                            return
+                        }
+                        
                         Task {
                             do {
-                                try await controler.signUp()
+                                try await SignUpControler.signUp()
                                 isValid = true
+                                KeyChainControler.set(SignUpControler.email, key: "email")
+                                KeyChainControler.set(confirmedPassword, key: "password")
                                 
                                 return
                             }

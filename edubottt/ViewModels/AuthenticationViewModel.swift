@@ -54,6 +54,13 @@ class SignInWithEmailViewModel: AuthenticationViewModel {
         return try await self.signInUser(email: email, password: password)
     }
     
+    func setEmail(email: String) {
+        self.email = email
+    }
+    
+    func setPassword(password: String) {
+        self.password = password
+    }
     func resetPassword(email: String) async throws {
         try await Auth.auth().sendPasswordReset(withEmail: email)
     }

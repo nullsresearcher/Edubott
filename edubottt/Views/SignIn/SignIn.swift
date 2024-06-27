@@ -8,25 +8,28 @@
 import SwiftUI
 
 struct SignIn: View {
-    @StateObject var controler: SignInWithEmailViewModel = SignInWithEmailViewModel()
+    @StateObject var SignInController: SignInWithEmailViewModel = SignInWithEmailViewModel()
+    @StateObject var BiometricController: BiometricViewModel = BiometricViewModel()
+    @StateObject var KeyChainController: KeyChainViewModel = KeyChainViewModel()
+    
     @Binding var showHomePage: Bool
-    @State private var userEmail: String = ""
-    @State private var password: String = ""
+   
     @State private var isValid: Bool = false
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
     
     var body: some View {
         VStack {
+            
             NavigationStack {
                 VStack {
-                    TextField("Email", text: $controler.email)
+                    TextField("Email", text: $SignInController.email)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
                         .cornerRadius(10)
                     
-                    SecureField("Password", text: $controler.password)
+                    SecureField("Password", text: $SignInController.password)
                         .padding()
                         .frame(width: 300, height: 50)
                         .background(Color.black.opacity(0.05))
@@ -35,7 +38,7 @@ struct SignIn: View {
                     Button("Sign In") {
                         Task {
                             do {
-                                try await controler.signIn()
+                                try await SignInController.signIn()
                                 isValid = true
                                 showHomePage = false
                                 return
@@ -62,10 +65,14 @@ struct SignIn: View {
                                 .italic()
                                 .underline()
                     }
+                    
                 }
             }
             .navigationTitle("Welcome back!")
             .navigationBarTitleDisplayMode(.inline)
+        }
+        .onAppear {
+            authenticateWithBiometrics()
         }
     }
 
@@ -73,6 +80,25 @@ struct SignIn: View {
     private func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))
     }
+    
+    
+    private func authenticateWithBiometrics() {
+            if let savedEmail = KeyChainController.get(key: "email") {
+                SignInController.email = savedEmail
+                BiometricController.authenticate()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    if BiometricController.isAuthenticated {
+                        if let savedPassword = KeyChainController.get(key: "password") {
+                            SignInController.password = savedPassword
+                        }
+                    } else if let error = BiometricController.authenticationError {
+                        alertMessage = "Biometric authentication error: \(error.localizedDescription)"
+                        showAlert = true
+                    }
+                }
+            }
+        }
     
 }
 
