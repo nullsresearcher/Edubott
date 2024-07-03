@@ -8,16 +8,20 @@
 import SwiftUI
 
 struct SettingView: View {
-    @StateObject var controler = AuthenticationViewModel()
+    @StateObject var authenController = AuthenticationViewModel()
+    @StateObject var userInfController = UserInfViewModel()
     @Binding var showHomepage: Bool
     
     var body: some View {
         
         NavigationStack {
             List {
-                Button("Update personal information") {
-                    // Your action here
+                NavigationLink(destination: PersonalInfView().environmentObject(userInfController)) {
+                    Button("Update personal information") {
+                        // Your action here
+                    }
                 }
+                
                 
                 Button("Update address") {
                     // Your action here
@@ -35,7 +39,7 @@ struct SettingView: View {
                 Button("Log out") {
                     Task {
                         do {
-                            try  controler.signOut()
+                            try  authenController.signOut()
                             showHomepage = true
                         } catch {
                             print("Error: \(error)")

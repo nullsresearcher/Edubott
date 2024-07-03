@@ -16,7 +16,6 @@
 		C7344B7A2BF1BDF0002A2E82 /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B792BF1BDF0002A2E82 /* SignUp.swift */; };
 		C7344B7D2BF1BEC4002A2E82 /* UserInfModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B7C2BF1BEC4002A2E82 /* UserInfModel.swift */; };
 		C7344B802BF1BF37002A2E82 /* UserInfViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B7F2BF1BF37002A2E82 /* UserInfViewModel.swift */; };
-		C7344B822BF32E42002A2E82 /* OptionalSignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */; };
 		C7344B862BF32EA9002A2E82 /* UserRefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B852BF32EA9002A2E82 /* UserRefModel.swift */; };
 		C7344B882BF33110002A2E82 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7344B872BF3310F002A2E82 /* SignIn.swift */; };
 		C782D8252BF4630000485E5C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C782D8242BF4630000485E5C /* MainView.swift */; };
@@ -41,6 +40,13 @@
 		C7B8346A2C1E482400BE2667 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834692C1E482400BE2667 /* Utilities.swift */; };
 		C7B8346E2C1E5D1700BE2667 /* UserGoogleAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B8346D2C1E5D1700BE2667 /* UserGoogleAccount.swift */; };
 		C7B834702C228E8700BE2667 /* MyCoursesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B8346F2C228E8700BE2667 /* MyCoursesView.swift */; };
+		C7B834732C2682FB00BE2667 /* PersonalInfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834722C2682FB00BE2667 /* PersonalInfView.swift */; };
+		C7B834762C26967200BE2667 /* WarningBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834752C26967200BE2667 /* WarningBox.swift */; };
+		C7B834782C2696C800BE2667 /* Btn.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834772C2696C800BE2667 /* Btn.swift */; };
+		C7B8347A2C269D1B00BE2667 /* AddressInfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B834792C269D1B00BE2667 /* AddressInfView.swift */; };
+		C7B8347C2C2C3B3400BE2667 /* BiometricViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B8347B2C2C3B3400BE2667 /* BiometricViewModel.swift */; };
+		C7B8347E2C2D121400BE2667 /* KeyChainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7B8347D2C2D121400BE2667 /* KeyChainViewModel.swift */; };
+		C7B834812C2D13B500BE2667 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C7B834802C2D13B500BE2667 /* KeychainSwift */; };
 		C7CC003D2C1661B1008AB71C /* PersonalInf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC003C2C1661B0008AB71C /* PersonalInf.swift */; };
 		C7CC003F2C1661E7008AB71C /* AddressInf.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CC003E2C1661E7008AB71C /* AddressInf.swift */; };
 		C7CC004E2C1AA5C2008AB71C /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C7CC004D2C1AA5C2008AB71C /* FirebaseAnalytics */; };
@@ -63,7 +69,6 @@
 		C7344B792BF1BDF0002A2E82 /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		C7344B7C2BF1BEC4002A2E82 /* UserInfModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfModel.swift; sourceTree = "<group>"; };
 		C7344B7F2BF1BF37002A2E82 /* UserInfViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfViewModel.swift; sourceTree = "<group>"; };
-		C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalSignUp.swift; sourceTree = "<group>"; };
 		C7344B852BF32EA9002A2E82 /* UserRefModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRefModel.swift; sourceTree = "<group>"; };
 		C7344B872BF3310F002A2E82 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
 		C782D8242BF4630000485E5C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -88,6 +93,12 @@
 		C7B834692C1E482400BE2667 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C7B8346D2C1E5D1700BE2667 /* UserGoogleAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserGoogleAccount.swift; sourceTree = "<group>"; };
 		C7B8346F2C228E8700BE2667 /* MyCoursesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoursesView.swift; sourceTree = "<group>"; };
+		C7B834722C2682FB00BE2667 /* PersonalInfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInfView.swift; sourceTree = "<group>"; };
+		C7B834752C26967200BE2667 /* WarningBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarningBox.swift; sourceTree = "<group>"; };
+		C7B834772C2696C800BE2667 /* Btn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Btn.swift; sourceTree = "<group>"; };
+		C7B834792C269D1B00BE2667 /* AddressInfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInfView.swift; sourceTree = "<group>"; };
+		C7B8347B2C2C3B3400BE2667 /* BiometricViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricViewModel.swift; sourceTree = "<group>"; };
+		C7B8347D2C2D121400BE2667 /* KeyChainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainViewModel.swift; sourceTree = "<group>"; };
 		C7CC003C2C1661B0008AB71C /* PersonalInf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalInf.swift; sourceTree = "<group>"; };
 		C7CC003E2C1661E7008AB71C /* AddressInf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressInf.swift; sourceTree = "<group>"; };
 		C7CC00542C1AB904008AB71C /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -101,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7B834812C2D13B500BE2667 /* KeychainSwift in Frameworks */,
 				C7B834602C1CD13A00BE2667 /* GoogleSignInSwift in Frameworks */,
 				C7CC00502C1AA5C2008AB71C /* FirebaseAnalyticsSwift in Frameworks */,
 				C7B8345E2C1CD12F00BE2667 /* GoogleSignIn in Frameworks */,
@@ -168,6 +180,7 @@
 			children = (
 				C7344B772BF1B97E002A2E82 /* HomePage.swift */,
 				C7CC005F2C1CAF4A008AB71C /* Root.swift */,
+				C7B834742C26965A00BE2667 /* Helper */,
 				C782D8212BF4629100485E5C /* SignUp */,
 				C782D8222BF462A700485E5C /* SignIn */,
 				C782D8232BF462BC00485E5C /* Main */,
@@ -195,6 +208,8 @@
 				C7CC00542C1AB904008AB71C /* AuthenticationViewModel.swift */,
 				C782D8282BF466DB00485E5C /* UserRefViewModel.swift */,
 				C79A81782BFA9BD400179C77 /* ScanDocumentViewModel.swift */,
+				C7B8347B2C2C3B3400BE2667 /* BiometricViewModel.swift */,
+				C7B8347D2C2D121400BE2667 /* KeyChainViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -203,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				C7344B792BF1BDF0002A2E82 /* SignUp.swift */,
-				C7344B812BF32E42002A2E82 /* OptionalSignUp.swift */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -221,7 +235,7 @@
 			isa = PBXGroup;
 			children = (
 				C782D8242BF4630000485E5C /* MainView.swift */,
-				C7CC00592C1ACFC2008AB71C /* SettingView.swift */,
+				C7B834712C26810D00BE2667 /* Setting */,
 				C7B8346F2C228E8700BE2667 /* MyCoursesView.swift */,
 				C782D8262BF4636E00485E5C /* SubjectDetailView.swift */,
 				C79A81882C06F11900179C77 /* Scan */,
@@ -236,7 +250,6 @@
 			children = (
 				C79A816F2BF80D4700179C77 /* ForgetPassword.swift */,
 				C79A81722BF82BC400179C77 /* ConfirmEmail.swift */,
-				C79A81742BF82EAA00179C77 /* ChangePassword.swift */,
 			);
 			path = ForgetPassword;
 			sourceTree = "<group>";
@@ -266,6 +279,26 @@
 				C7B834692C1E482400BE2667 /* Utilities.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C7B834712C26810D00BE2667 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				C7CC00592C1ACFC2008AB71C /* SettingView.swift */,
+				C79A81742BF82EAA00179C77 /* ChangePassword.swift */,
+				C7B834722C2682FB00BE2667 /* PersonalInfView.swift */,
+				C7B834792C269D1B00BE2667 /* AddressInfView.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		C7B834742C26965A00BE2667 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				C7B834752C26967200BE2667 /* WarningBox.swift */,
+				C7B834772C2696C800BE2667 /* Btn.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		C7CC00512C1AB7BE008AB71C /* Frameworks */ = {
@@ -309,6 +342,7 @@
 				C7CC00522C1AB7BE008AB71C /* FirebaseAuth */,
 				C7B8345D2C1CD12F00BE2667 /* GoogleSignIn */,
 				C7B8345F2C1CD13A00BE2667 /* GoogleSignInSwift */,
+				C7B834802C2D13B500BE2667 /* KeychainSwift */,
 			);
 			productName = edubottt;
 			productReference = C7344B632BF15DA2002A2E82 /* edubottt.app */;
@@ -344,6 +378,7 @@
 			packageReferences = (
 				C7CC004C2C1AA5C2008AB71C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				C7CC00612C1CCAAE008AB71C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				C7B8347F2C2D13B500BE2667 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = C7344B642BF15DA2002A2E82 /* Products */;
 			projectDirPath = "";
@@ -374,16 +409,19 @@
 			files = (
 				C79A81792BFA9BD400179C77 /* ScanDocumentViewModel.swift in Sources */,
 				C79A81902C06F25300179C77 /* ScanDataModel.swift in Sources */,
+				C7B834782C2696C800BE2667 /* Btn.swift in Sources */,
 				C7344B6B2BF15DA2002A2E82 /* Item.swift in Sources */,
+				C7B8347A2C269D1B00BE2667 /* AddressInfView.swift in Sources */,
 				C782D8272BF4636E00485E5C /* SubjectDetailView.swift in Sources */,
 				C79A81732BF82BC400179C77 /* ConfirmEmail.swift in Sources */,
-				C7344B822BF32E42002A2E82 /* OptionalSignUp.swift in Sources */,
 				C79A818A2C06F17000179C77 /* ScanView.swift in Sources */,
 				C7344B862BF32EA9002A2E82 /* UserRefModel.swift in Sources */,
 				C7CC00602C1CAF4A008AB71C /* Root.swift in Sources */,
+				C7B8347E2C2D121400BE2667 /* KeyChainViewModel.swift in Sources */,
 				C79A81872C06ED1100179C77 /* CameraViewModel.swift in Sources */,
 				C72D661E2BF72FA500D251FD /* QuizView.swift in Sources */,
 				C782D8252BF4630000485E5C /* MainView.swift in Sources */,
+				C7B8347C2C2C3B3400BE2667 /* BiometricViewModel.swift in Sources */,
 				C7CC00572C1ACEFE008AB71C /* UserAccount.swift in Sources */,
 				C7B8346E2C1E5D1700BE2667 /* UserGoogleAccount.swift in Sources */,
 				C7344B7D2BF1BEC4002A2E82 /* UserInfModel.swift in Sources */,
@@ -401,9 +439,11 @@
 				C7B8346A2C1E482400BE2667 /* Utilities.swift in Sources */,
 				C7CC003F2C1661E7008AB71C /* AddressInf.swift in Sources */,
 				C782D8292BF466DB00485E5C /* UserRefViewModel.swift in Sources */,
+				C7B834762C26967200BE2667 /* WarningBox.swift in Sources */,
 				C79A81852BFC018700179C77 /* CustomCameraView.swift in Sources */,
 				C79A81702BF80D4700179C77 /* ForgetPassword.swift in Sources */,
 				C7344B882BF33110002A2E82 /* SignIn.swift in Sources */,
+				C7B834732C2682FB00BE2667 /* PersonalInfView.swift in Sources */,
 				C79A818C2C06F1A800179C77 /* ScannerView.swift in Sources */,
 				C7344B782BF1B97E002A2E82 /* HomePage.swift in Sources */,
 				C7B834672C1D4FD800BE2667 /* GoogleAuthenticationViewModel.swift in Sources */,
@@ -546,9 +586,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = edubottt/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Easely;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera required for scan documents";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "For Authentication";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs to access the microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -584,9 +624,9 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = edubottt/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Easely;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera required for scan documents";
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "For Authentication";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs to access the microphone";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -632,6 +672,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		C7B8347F2C2D13B500BE2667 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		C7CC004C2C1AA5C2008AB71C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -660,6 +708,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C7CC00612C1CCAAE008AB71C /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		C7B834802C2D13B500BE2667 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7B8347F2C2D13B500BE2667 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
 		};
 		C7CC004D2C1AA5C2008AB71C /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

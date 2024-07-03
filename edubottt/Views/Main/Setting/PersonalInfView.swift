@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PersonalInfView: View {
-    @StateObject var controler = UserInfViewModel()
+    @EnvironmentObject var controler : UserInfViewModel
     
     
     @State private var showAlert: Bool = false
@@ -74,10 +74,12 @@ struct PersonalInfView: View {
 }
 
 struct PersonalInf_Previews: PreviewProvider {
+  
     @State static private var showHomePage = false
     
     static var previews: some View {
        
         return PersonalInfView()
+            .environmentObject(UserInfViewModel())
     }
 }
