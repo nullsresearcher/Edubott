@@ -11,8 +11,8 @@ struct UserInfModel: Codable {
     var personalInf: PersonalInf
     var addressInf: AddressInf
     
-    init() {
-        self.personalInf = PersonalInf(firstName: "", lastName: "", email: "", password: "", dob: Date(), gender: .Female)
+    init(email: String) {
+        self.personalInf = PersonalInf(firstName: "", lastName: "", email: email, password: "", dob: Date(), gender: .Female)
         self.addressInf = AddressInf(address: "", city: "", state: "", country: "", postalCode: "")
     }
     var isValid: Bool {

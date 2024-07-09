@@ -8,37 +8,33 @@
 import SwiftUI
 
 struct PersonalInfView: View {
-    @EnvironmentObject var controler : UserInfViewModel
-    
+    @EnvironmentObject var controler: UserInfViewModel
     
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
-    @State private var isValid: Bool = false
-    @State private var isFirstNameFocused: Bool = false
     @State private var isDOBFocused: Bool = false
     
     var body: some View {
-        let userPersonalInf = $controler.newUserInf.personalInf
+        let userPersonalInf = $controler.currentUserInf.personalInf
         
         NavigationStack {
             Form {
                 Section(header: Text("Personal Information")) {
                     TextField("First Name", text: userPersonalInf.firstName)
-                    WarningBox(condition: !controler.newUserInf.personalInf.firstName.isEmpty && !controler.newUserInf.personalInf.validFirstName, message: "Name must not contain the special character or numberic!")
+                    WarningBox(condition: !controler.currentUserInf.personalInf.firstName.isEmpty && !controler.currentUserInf.personalInf.validFirstName, message: "Name must not contain special characters or numeric values!")
                     
                     TextField("Last Name", text: userPersonalInf.lastName)
-                    WarningBox(condition: !controler.newUserInf.personalInf.lastName.isEmpty && !controler.newUserInf.personalInf.validLastName, message: "Name must not contain the special character or numberic!")
+                    WarningBox(condition: !controler.currentUserInf.personalInf.lastName.isEmpty && !controler.currentUserInf.personalInf.validLastName, message: "Name must not contain special characters or numeric values!")
                     
                     TextField("Email", text: userPersonalInf.email)
-                        .disabled(/*@START_MENU_TOKEN@*/true/*@END_MENU_TOKEN@*/)
-                    
+                        .disabled(true)
                     
                     DatePicker("Date of birth", selection: userPersonalInf.dob, displayedComponents: .date)
                         .datePickerStyle(CompactDatePickerStyle())
                         .onTapGesture {
                             self.isDOBFocused = true
                         }
-                    WarningBox(condition: isDOBFocused && !controler.newUserInf.personalInf.isAgeGreaterThanSix, message: "The minimum age is greater than 6!")
+                    WarningBox(condition: isDOBFocused && !controler.currentUserInf.personalInf.isAgeGreaterThanSix, message: "The minimum age is greater than 6!")
                     
                     Picker("Gender", selection: userPersonalInf.gender) {
                         ForEach(PersonalInf.Gender.allCases, id: \.self) { gender in
@@ -50,20 +46,19 @@ struct PersonalInfView: View {
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button("Save") {
-                        
+                        // Save action
                     }
-                    .alert(isPresented: $showAlert, content: {getAlert()})
-                    
+                    .alert(isPresented: $showAlert, content: { getAlert() })
                 }
-        }
-        .navigationTitle("Personal Information")
-        .navigationBarTitleDisplayMode(.inline)
-        .onTapGesture(count: 2) {
-            self.collapseKeyboard()
+            }
+            .navigationTitle("Personal Information")
+            .navigationBarTitleDisplayMode(.inline)
+            .onTapGesture(count: 2) {
+                self.collapseKeyboard()
+            }
         }
     }
-        
-    }
+    
     private func collapseKeyboard() {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
@@ -80,6 +75,6 @@ struct PersonalInf_Previews: PreviewProvider {
     static var previews: some View {
        
         return PersonalInfView()
-            .environmentObject(UserInfViewModel())
+            .environmentObject(UserInfViewModel(email: "example@exp.com"))
     }
 }

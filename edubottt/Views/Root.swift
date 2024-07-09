@@ -9,15 +9,17 @@ import SwiftUI
 
 struct Root: View {
     @State var showHomePage: Bool = true
+    @State var email: String = ""
     var body: some View {
         ZStack {
             NavigationStack{
-                MainView(showHomePage: $showHomePage)
+                MainView(showHomePage: $showHomePage, email: $email)
             }
         }
         .onAppear {
             let authUser = try? AuthenticationViewModel.shared.getAuthenticatedUser()
-            self.showHomePage = authUser == nil 
+            email = authUser?.email ?? ""
+            self.showHomePage = authUser == nil
         }
         .fullScreenCover(isPresented: $showHomePage, content: {
             NavigationStack {

@@ -96,9 +96,9 @@ struct SignUp: View {
 struct SignUp_Previews: PreviewProvider {
     @State static private var showHomePage = false
     static var previews: some View {
-        let userInfViewModel = SignInViewModel()
+        
         return SignUp(showHomePage: $showHomePage)
-            .environmentObject(userInfViewModel)
+            
     }
 }
 

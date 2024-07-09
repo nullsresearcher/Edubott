@@ -11,14 +11,14 @@ class UserInfViewModel: ObservableObject {
     init(email: String) {
         self.email = email
         self.userInfList = []
-        self.currentUserInf = UserInfModel()
+        self.currentUserInf = UserInfModel(email: email)
         self.getUserInf(email: email)
     }
     
     func getUserInf(email: String) {
         guard let data = UserDefaults.standard.data(forKey: userInfKey),
               let savedUserInfList = try? JSONDecoder().decode([UserInfModel].self, from: data) else {
-            self.userInfList = [UserInfModel()]
+            self.userInfList = [UserInfModel(email: email)]
             return
         }
         self.userInfList = savedUserInfList

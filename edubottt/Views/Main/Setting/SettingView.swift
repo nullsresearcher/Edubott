@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @StateObject var authenController = AuthenticationViewModel()
-    @StateObject var userInfController = UserInfViewModel()
+    @EnvironmentObject var userInfController : UserInfViewModel
     @Binding var showHomepage: Bool
     
     var body: some View {
@@ -22,10 +22,14 @@ struct SettingView: View {
                     }
                 }
                 
+                NavigationLink(destination:
+                    AddressInfView()
+                    .environmentObject(userInfController)) {
+                        Button("Update address") {
+                            
+                        }
+                    }
                 
-                Button("Update address") {
-                    // Your action here
-                }
                 NavigationLink(destination: ChangePassword(showHomePage: $showHomepage)) {
                     Button("Change password") {
                             

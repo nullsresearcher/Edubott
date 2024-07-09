@@ -82,6 +82,12 @@ extension AuthenticationViewModel {
         return UserAccount(user: authDataResult.user)
     }
     
+    func getEmail() throws -> String {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError (.badServerResponse)
+        }
+        return user.email ?? ""
+    }
     
     func updatePassword (password:
                          String) async throws {

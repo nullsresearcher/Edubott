@@ -15,6 +15,7 @@ struct ChangePassword: View {
     @State private var isUpdated: Bool = false
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
+    @State private var email: String = ""
     
     var body: some View {
         SecureField("New Password", text: $password)
@@ -56,8 +57,15 @@ struct ChangePassword: View {
         .alert(isPresented: $showAlert, content: {
             getAlert()
         })
+        .onAppear {
+            do {
+                email = try controler.getEmail()
+            } catch {
+                print("Failed to get email: \(error)")
+            }
+        }
         .navigationDestination(isPresented: $isUpdated) {
-            MainView(showHomePage: $showHomePage).environmentObject(UserRefViewModel())}
+            MainView(showHomePage: $showHomePage, email: $email)}
     }
     func getAlert() -> Alert {
         return Alert(title: Text(alertMessage))

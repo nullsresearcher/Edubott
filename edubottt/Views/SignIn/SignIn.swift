@@ -56,7 +56,7 @@ struct SignIn: View {
                     .cornerRadius(10)
                     .alert(isPresented: $showAlert, content: {getAlert()})
                     .navigationDestination(isPresented: $isValid) {
-                        MainView(showHomePage: $showHomePage)
+                        MainView(showHomePage: $showHomePage, email: $SignInController.email)
                     }
                     
                     NavigationLink(
@@ -106,11 +106,9 @@ struct LogIn_Previews: PreviewProvider {
     @State static private var showHomePage = false
     
     static var previews: some View {
-        let userInfViewModel = UserInfViewModel()
-        let userRefViewModel = UserRefViewModel()
+  
         return SignIn(showHomePage: $showHomePage)
-            .environmentObject(userInfViewModel)
-            .environmentObject(userRefViewModel)
+           
     }
 }
 

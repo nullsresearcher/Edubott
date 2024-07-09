@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AddressInfView: View {
-    @StateObject var controler = UserInfViewModel()
+    @EnvironmentObject var controler: UserInfViewModel
     
     
     @State private var showAlert: Bool = false
@@ -16,7 +16,7 @@ struct AddressInfView: View {
     @State private var isValid: Bool = false
     
     var body: some View {
-        let userAddressInf = $controler.newUserInf.addressInf
+        let userAddressInf = $controler.currentUserInf.addressInf
     
         NavigationStack {
             Form {
@@ -54,6 +54,4 @@ struct AddressInfView: View {
     }
 }
 
-#Preview {
-    AddressInfView()
-}
+

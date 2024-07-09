@@ -3,8 +3,6 @@ import GoogleSignIn
 import GoogleSignInSwift
 
 struct HomePage: View {
-    @StateObject var signUpViewModel = SignInViewModel()
-    @StateObject var logInViewModel = LogInViewModel()
     @State private var showSignInView: Bool = false
     @StateObject private var googleController = GoogleAuthenticationViewModel()
     @Binding var showHomePage: Bool
@@ -22,15 +20,14 @@ struct HomePage: View {
                 
                 VStack(spacing: 25) {
                     NavigationLink(destination: SignUp(showHomePage: $showHomePage)
-                        .environmentObject(signUpViewModel)
+               
                         .onAppear {
-                            signUpViewModel.generateNewUser()
+                            
                         }) {
                             Btn(type: "SIGN UP")
                         }
                     
-                    NavigationLink(destination: SignIn(showHomePage: $showHomePage)
-                        .environmentObject(logInViewModel)) {
+                    NavigationLink(destination: SignIn(showHomePage: $showHomePage)) {
                             Btn(type: "SIGN IN")
                         }
                     
